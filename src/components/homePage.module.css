@@ -1,0 +1,55 @@
+.containerBestSeller {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 20px;
+    padding-bottom: 40px;
+    transition: transform 0.5s cubic-bezier(0.4, 0.0, 0.2, 1);
+    /* transform: translate(100%, 0px); */
+  }
+
+  .container {
+    position: relative;
+    max-width: 1230px;
+    margin: 0 auto;
+    display: flex;
+    justify-content: center;
+    overflow: hidden; 
+  }
+  
+  .previous,
+  .next {
+    position: absolute;
+    top: 45%;
+    font-size: 28px;
+    cursor: pointer;
+    transition: color 0.3s ease-in-out;
+  }
+
+  .previous:hover,
+  .next:hover{
+    color: #55555561;
+  }
+  
+  .previous {
+    left: 10px;
+  }
+  
+  .next {
+    right: 20px;
+  }
+
+.carouselContainer {
+    position: relative;
+  }
+
+
+.headerSeller{
+    height: 55px;
+    border-left: 5px solid #b81d33;
+    margin: 15px 50px;
+    padding-left: 7px;
+    letter-spacing: 1px;
+}
+
+

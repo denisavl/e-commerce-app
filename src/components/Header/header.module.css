@@ -1,0 +1,67 @@
+body, html {
+    margin: 0;
+    padding: 0;
+}
+
+.headerContainer {
+    display: flex;
+    justify-content: space-between;
+    border-bottom: 1px solid black;
+    padding: 15px 30px;
+    align-items: center;    
+}
+
+.logo {
+    width: 200px;
+    margin-right: 120px; /* Adjust margin to move the logo more to the left */
+}
+
+.btn {
+    border: none;
+    background-color: transparent;
+    font-size: 16px;
+}
+
+.buttons {
+    display: flex;
+    gap: 14px;
+}
+
+.rightSide {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.basketShop {
+    width: 35px;
+}
+
+.formContainer {
+    position: relative;
+    display: flex;
+    align-items: center;
+    border: none;
+    padding: 0;
+}
+
+.searchBar {
+    border: none;
+    border-bottom: 1px solid black;
+    width: 110px;
+    padding: 9px 25px;
+}
+
+.searchBar:focus {
+    outline: none;
+}
+
+.searchIcon {
+    position: relative;
+    left: 15px;
+}
+
+/* Optional: Add styling for better appearance */
+.searchBar::placeholder {
+    color: #999;
+}
