@@ -1,10 +1,10 @@
 /* eslint-disable react/prop-types */
-import Header from "./Header/Header";
-import Poster from "./Poster/PosterHome";
-import CardBestSeller from "./CardBestSeller/BestSellerCard";
-import fetchCarousel from "../fetch";
-import Brands from "./Brands/Brands";
-import Footer from "./Footer/Footer";
+import Header from "../../components/Header/Header";
+import Poster from "../../components/Poster/PosterHome";
+import CardBestSeller from "../../components/CardBestSeller/BestSellerCard";
+import fetchCarousel from "../../fetch";
+import Brands from "../../components/Brands/Brands";
+import Footer from "../../components/Footer/Footer";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import styles from "./homePage.module.css";
