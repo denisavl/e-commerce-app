@@ -4,6 +4,7 @@ import Poster from "./Poster/PosterHome";
 import CardBestSeller from "./CardBestSeller/BestSellerCard";
 import fetchCarousel from "../fetch";
 import Brands from "./Brands/Brands";
+import Footer from "./Footer/Footer";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import styles from "./homePage.module.css";
@@ -65,6 +66,7 @@ export default function HomePage() {
           </div>
         </div>
       </div>
+      <Footer />
     </>
   );
 }

@@ -13,18 +13,25 @@ body, html {
 
 .logo {
     width: 200px;
-    margin-right: 120px; /* Adjust margin to move the logo more to the left */
+    margin-right: 120px;
 }
 
 .btn {
     border: none;
     background-color: transparent;
     font-size: 16px;
+    padding: 0;
+    font-family: Tahoma;
+    cursor: pointer;
+}
+
+.btn:hover{
+    border-bottom: 1px solid black;
 }
 
 .buttons {
     display: flex;
-    gap: 14px;
+    gap: 25px;
 }
 
 .rightSide {
@@ -49,7 +56,7 @@ body, html {
     border: none;
     border-bottom: 1px solid black;
     width: 110px;
-    padding: 9px 25px;
+    padding: 6px 25px;
 }
 
 .searchBar:focus {
@@ -59,9 +66,10 @@ body, html {
 .searchIcon {
     position: relative;
     left: 15px;
+    width: 25px;
 }
 
-/* Optional: Add styling for better appearance */
 .searchBar::placeholder {
     color: #999;
+    font-size: 16px;
 }

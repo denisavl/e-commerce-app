@@ -2,16 +2,16 @@
 import { useState } from 'react';
 import styles from '../Brands/brands.module.css';
 
-import MaybellineImg from '../../assets/Maybelline.svg';
-import CovergirlImg from '../../assets/Covergirl.jpg';
-import DiorImg from '../../assets/Dior.svg';
-import FentiImg from '../../assets/Fenti.svg';
-import MarcelleImg from '../../assets/Marcelle.png';
-import MineralFusionImg from '../../assets/Mineral_Fusion.jpg';
-import NyxImg from '../../assets/Nyx.svg';
-import RevlonImg from '../../assets/Revlon.jpg';
-import SalonImg from '../../assets/Salon_Perfect.jpg';
-import SmashboxImg from '../../assets/smashbox.png';
+import MaybellineImg from '../../assets/brands/Maybelline.svg';
+import CovergirlImg from '../../assets/brands/Covergirl.jpg';
+import DiorImg from '../../assets/brands/Dior.svg';
+import FentiImg from '../../assets/brands/Fenti.svg';
+import MarcelleImg from '../../assets/brands/Marcelle.png';
+import MineralFusionImg from '../../assets/brands/Mineral_Fusion.jpg';
+import NyxImg from '../../assets/brands/Nyx.svg';
+import RevlonImg from '../../assets/brands/Revlon.jpg';
+import SalonImg from '../../assets/brands/Salon_Perfect.jpg';
+import SmashboxImg from '../../assets/brands/smashbox.png';
 
 const Carousel = ({ images }) => {
     const [startIndex, setStartIndex] = useState(0);

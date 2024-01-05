@@ -2,11 +2,13 @@
     height: 470px;
     background: url('../../assets/poster.jpg') no-repeat center;
     background-size: cover;
+    width: 100%;
 }
 
 .content {
     color: white;
-    width: 350px;
+    max-width: 350px; 
+    width: 100%;
     padding: 100px 150px;
   }
 
