@@ -14,7 +14,7 @@ const Header = () => {
           Face
         </button>
         <button type="button" className={styles.btn}>
-          Eye
+          Eyes
         </button>
         <button type="button" className={styles.btn}>
           Lips
