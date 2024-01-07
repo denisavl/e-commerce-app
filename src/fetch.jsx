@@ -9,12 +9,6 @@ async function fetchCarousel() {
   return data;
 }
 
-  // const faceProducts = ["blush", "bronzer", "foundation"];
-  //   const eyesProducts = ["eyebrow", "eyeliner", "eyeshadow", "mascara"];
-  //   const lipsProducts = ["lip_liner", "lipstick"];
-  //   const nailsProducts = ["nail_polish"];
-
-
 const fetchProducts = async (productTypes) => {
   const requests = productTypes.map((type) =>
   axios.get(`https://makeup-api.herokuapp.com/api/v1/products.json?product_type=${type}`)
