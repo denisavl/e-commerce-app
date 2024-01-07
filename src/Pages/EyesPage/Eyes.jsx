@@ -1,5 +1,3 @@
-/* eslint-disable no-unused-vars */
-import styles from './eye.module.css'
 import CreatePage from '../CreatePage/CreatePage'
 import { fetchProducts } from '../../fetch'
 import { useQuery } from "@tanstack/react-query";
