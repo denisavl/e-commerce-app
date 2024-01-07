@@ -2,7 +2,7 @@
 import Header from "../../components/Header/Header";
 import Poster from "../../components/Poster/PosterHome";
 import CardBestSeller from "../../components/CardBestSeller/BestSellerCard";
-import fetchCarousel from "../../fetch";
+import {fetchCarousel} from "../../fetch";
 import Brands from "../../components/Brands/Brands";
 import Footer from "../../components/Footer/Footer";
 import { useQuery } from "@tanstack/react-query";
