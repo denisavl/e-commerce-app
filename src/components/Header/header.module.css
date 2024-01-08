@@ -29,9 +29,14 @@ body, html {
     border-bottom: 1px solid black;
 }
 
-.buttons {
+ul{
     display: flex;
-    gap: 25px;
+    gap: 20px;
+}
+
+li{
+    list-style-type: none;
+    
 }
 
 .rightSide {
