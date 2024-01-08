@@ -9,6 +9,14 @@ async function fetchCarousel() {
   return data;
 }
 
+async function lipstickFetch() {
+  const response = await axios.get(
+    "https://makeup-api.herokuapp.com/api/v1/products.json?product_type=lipstick"
+  );
+  const data = await response.data;
+  return data;
+}
+
 const fetchProducts = async (productTypes) => {
   const requests = productTypes.map((type) =>
   axios.get(`https://makeup-api.herokuapp.com/api/v1/products.json?product_type=${type}`)
@@ -35,4 +43,4 @@ results.forEach((result, index) => {
 return {successfulResults, errorResults };
 };
 
-export {fetchCarousel, fetchProducts}
+export {fetchCarousel, fetchProducts, lipstickFetch}

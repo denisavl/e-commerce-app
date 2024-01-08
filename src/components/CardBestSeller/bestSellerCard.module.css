@@ -20,3 +20,11 @@
 p{
     height: 40px;
 }
+
+.brand{
+    font-size: 20px;
+    padding-top: 20px;
+    padding-bottom: 10px;
+    letter-spacing: 1px;
+    text-transform: uppercase;
+}

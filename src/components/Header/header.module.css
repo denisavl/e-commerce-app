@@ -29,12 +29,12 @@ body, html {
     border-bottom: 1px solid black;
 }
 
-ul{
+.buttons{
     display: flex;
     gap: 20px;
 }
 
-li{
+.buttons li{
     list-style-type: none;
     
 }

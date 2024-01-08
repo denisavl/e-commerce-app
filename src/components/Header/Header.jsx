@@ -1,35 +1,35 @@
 import logoImg from "../../assets/logo.png";
 import styles from "./header.module.css";
 import basketIcon from "../../assets/shopping-cart.png";
+import { Link } from "react-router-dom";
 
 const Header = () => {
   return (
     <div className={styles.headerContainer}>
       <ul className={styles.buttons}>
         <li>
-          <a href="/shop" className={styles.btn}>Shop All</a>
+          <Link to="/shop" className={styles.btn}>Shop All</Link>
         </li>
         <li>
-          <a href="/face" className={styles.btn}>Face</a>
+          <Link to="/face" className={styles.btn}>Face</Link>
         </li>
         <li>
-          <a href="/eyes" className={styles.btn}>Eyes</a>
+          <Link to="/eyes" className={styles.btn}>Eyes</Link>
         </li>
         <li>
-          <a href="/lips" className={styles.btn}>Lips</a>
+          <Link to="/lips" className={styles.btn}>Lips</Link>
         </li>
         <li>
-          <a href="/nails" className={styles.btn}>Nails</a>
+          <Link to="/nails" className={styles.btn}>Nails</Link>
         </li>
         <li>
-          <a href="/about" className={styles.btn}>About Us</a>
+          <Link to="/about" className={styles.btn}>About Us</Link>
         </li>
       </ul>
       <div>
-        <a href="/">
+        <Link to="/">
           <img className={styles.logo} src={logoImg} alt="logo image" />
-        </a>
-        
+        </Link>
       </div>
       <div className={styles.rightSide}>
         <div>

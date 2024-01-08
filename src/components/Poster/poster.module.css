@@ -20,7 +20,6 @@
     cursor: pointer;
     font-weight: bold;
     transition: background-color 0.3s, color 0.3s;
-    background-color: #fff;
 }
 
 .btn:hover {
@@ -28,10 +27,10 @@
     color: #fff;
 }
 
-p{
+.content p{
     font-size: 18px;
 }
 
-h1{
+.content > h1{
     font-size: 32px;
 }
