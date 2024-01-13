@@ -167,7 +167,7 @@ export default function CreatePage({
                   <li key={index}>
                     <Checkbox 
                     label={color}
-                    checked={checkedColor.includes(color)}
+                    checked={checkedColor.indexOf(color) === -1 ? false : true}
                     onChange={() => handleCheckChange(checkedColor, color, 'color')}
                     />
                   </li>

@@ -22,6 +22,13 @@ export default function EyesPage() {
     queryFn: () => fetchProducts(eyesProductsTypes),
   });
 
+  const brands = [
+    ...new Set(allProducts.map((product) => product.brand)),
+  ].filter((brand) => brand !== null);
+  const properties = [
+    ...new Set(allProducts.flatMap((product) => product.tag_list)),
+  ];
+
   useEffect(() => {
     if (eyesProducts.isSuccess) {
       const products = eyesProducts.data.successfulResults.flatMap((result) =>
@@ -35,26 +42,6 @@ export default function EyesPage() {
       console.log(products);
     }
   }, [eyesProducts.data, eyesProducts.isSuccess]);
-
-  const brands = [
-    ...new Set(allProducts.map((product) => product.brand)),
-  ].filter((brand) => brand !== null);
-  const classification = ["eyebrow", "eyeliner", "eyeshadow", "mascara"];
-  const colors = [
-    "blue",
-    "red",
-    "green",
-    "yellow",
-    "brown",
-    "purple",
-    "gray",
-    "orange",
-    "teal",
-    "pink",
-  ];
-  const properties = [
-    ...new Set(allProducts.flatMap((product) => product.tag_list)),
-  ];
 
   const showFilteredResults = (filters) => {
     let filteredResults = [...allProducts];
@@ -111,7 +98,6 @@ export default function EyesPage() {
   };
 
   const handleFilter = (filters, category) => {
-    // console.log(filters);
     const newFilter = { ...selectedFilter };
 
     newFilter[category] = filters;
@@ -125,8 +111,8 @@ export default function EyesPage() {
       title={"Eyes"}
       products={filteredProducts}
       brands={brands}
-      classifications={classification}
-      colors={colors}
+      classifications={eyesProductsTypes}
+      colors={["blue", "red", "green", "yellow", "brown", "purple", "gray", "orange", "teal", "pink"]}
       properties={properties}
       prices={["< 15", "15 - 29.99", "30 - 44.99", "45 - 59.99", "> 60"]}
       handleFilter={(filters, category) => handleFilter(filters, category)}
