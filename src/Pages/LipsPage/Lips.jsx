@@ -19,7 +19,7 @@ export default function LipsPage(){
       )) || [];
 
       const brands = [...new Set(products.map(product => product.brand))].filter(brand => brand !== null);
-      const classification = lipsProductTypes;
+      const classification = ["lip liner", "lipstick"];
       const colors = ['Pink', 'Nude', 'Red', 'Berry', 'Brown', 'Peach', 'Plum', 'Coral', 'Natural', 'Orange'];
       const properties = [...new Set(products.flatMap(product => product.tag_list))]
       const priceIntervals = ['< 15', '15 - 29.99', '30 - 44.99', '45 - 59.99', '> 60']

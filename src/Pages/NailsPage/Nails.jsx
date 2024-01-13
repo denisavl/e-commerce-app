@@ -40,8 +40,6 @@ export default function NailsPage() {
     ...new Set(products.flatMap((product) => product.tag_list)),
   ];
   const priceIntervals = ["< 5", "5 - 9.99", "10 - 14.99", "> 15"];
-  console.log(colors);
-
   return (
     <CreatePage
       title={"Nails"}

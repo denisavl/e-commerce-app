@@ -2,23 +2,87 @@
 
 import styles from "../CreatePage/createPage.module.css";
 import Header from "../../components/Header/Header";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
-export default function CreatePage({ title, products, brands, classifications, colors, prices, properties }) {
-
+export default function CreatePage({
+  title,
+  products,
+  brands,
+  classifications,
+  colors,
+  prices,
+  properties,
+  handleFilter
+}) {
   const [activeFilter, setActiveFilter] = useState(null);
+  const [checkedBrand, setCheckedBrand] = useState([]);
+  const [checkedClassification, setCheckedClassification] = useState([]);
+  const [checkedColor, setCheckedColor] = useState([]);
+  const [checkedPrice, setCheckedPrice] = useState([]);
+  const [checkedProperty, setCheckedProperty] = useState([]);
+
+  function handleCheckChange(prevChecked, value, filter) {
+
+    const currentIndex = prevChecked.indexOf(value);
+    const newChecked = [...prevChecked];
+    if(currentIndex === -1) {
+      newChecked.push(value);
+    } else {
+      newChecked.splice(currentIndex, 1);
+    }
+
+    switch (filter){
+      case 'brand' :
+      setCheckedBrand(newChecked);
+      break;
+      case 'classification':
+      setCheckedClassification(newChecked)
+      break;
+      case 'color' :
+      setCheckedColor(newChecked);
+      break;
+      case 'price' :
+      setCheckedPrice(newChecked);
+      break;
+      case 'property' :
+      setCheckedProperty(newChecked);
+      break;
+  }
+    handleFilter(newChecked, filter);
+  }
 
   function toggleActive(filter) {
     setActiveFilter(activeFilter === filter ? null : filter);
   }
 
+  useEffect(() => {
+    const handleDocumentClick = () => {
+      setActiveFilter(null);
+    };
+
+    window.addEventListener("click", handleDocumentClick);
+
+    return () => {
+      window.removeEventListener("click", handleDocumentClick);
+    };
+  }, []);
+
+
   return (
     <div>
       <Header />
       <div className={styles.pageContainer}>
-        <h1 className={styles.titlePage}>{title} products {`(${products.length})`}</h1>
+        <h1 className={styles.titlePage}>
+          {title} products {`(${products.length})`}
+        </h1>
         <div className={styles.filtersContainer}>
-        <div className={styles.filterBox} onClick={() => toggleActive('brands')}>
+          <div
+            className={styles.filterBox}
+            onClick={(event) => {
+              event.stopPropagation();
+              toggleActive("brand");
+            }}
+          >
             <button type="button">Brands</button>
             <span>
               <svg
@@ -31,15 +95,27 @@ export default function CreatePage({ title, products, brands, classifications, c
                 <path d="M18 6L9.5 13L1 6" stroke="black"></path>
               </svg>
             </span>
-            {activeFilter === 'brands' && (
-              <ul className={styles.filterOptions}>
+            {activeFilter === "brand" && (
+              <ul className={styles.filterOptions} onClick={(event) => event.stopPropagation()}> 
                 {brands.map((brand, index) => (
-                  <li key={index}>{brand}</li>
+                  <li key={index}>
+                    <Checkbox 
+                    label={brand}
+                    checked={checkedBrand.indexOf(brand) === -1 ? false : true}
+                    onChange={() => handleCheckChange(checkedBrand, brand, 'brand')}
+                    />
+                  </li>
                 ))}
               </ul>
             )}
           </div>
-          <div className={styles.filterBox} onClick={() => toggleActive('classification')}>
+          <div
+            className={styles.filterBox}
+            onClick={(event) => {
+              event.stopPropagation();
+              toggleActive("classification");
+            }}
+          >
             <button type="button">Classification</button>
             <span>
               <svg
@@ -52,15 +128,27 @@ export default function CreatePage({ title, products, brands, classifications, c
                 <path d="M18 6L9.5 13L1 6" stroke="black"></path>
               </svg>
             </span>
-            {activeFilter === 'classification' && (
-              <ul className={styles.filterOptions}>
+            {activeFilter === "classification" && (
+              <ul className={styles.filterOptions} onClick={(event) => event.stopPropagation()}>
                 {classifications.map((classification, index) => (
-                  <li key={index}>{classification}</li>
+                  <li key={index}>
+                    <Checkbox 
+                    label={classification}
+                    checked={checkedClassification.indexOf(classification) === -1 ? false : true}
+                    onChange={() => handleCheckChange(checkedClassification, classification, 'classification')}
+                  />
+                  </li>
                 ))}
               </ul>
             )}
           </div>
-          <div className={styles.filterBox} onClick={() => toggleActive('color')}>
+          <div
+            className={styles.filterBox}
+            onClick={(event) => {
+              event.stopPropagation();
+              toggleActive("color");
+            }}
+          >
             <button type="button">Color</button>
             <span>
               <svg
@@ -73,15 +161,27 @@ export default function CreatePage({ title, products, brands, classifications, c
                 <path d="M18 6L9.5 13L1 6" stroke="black"></path>
               </svg>
             </span>
-            {activeFilter === 'color' && 
-            <ul className={styles.filterOptions}>
+            {activeFilter === "color" && (
+              <ul className={styles.filterOptions} onClick={(event) => event.stopPropagation()}>
                 {colors.map((color, index) => (
-                  <li key={index}>{color}</li>
+                  <li key={index}>
+                    <Checkbox 
+                    label={color}
+                    checked={checkedColor.includes(color)}
+                    onChange={() => handleCheckChange(checkedColor, color, 'color')}
+                    />
+                  </li>
                 ))}
-            </ul>
-            }
+              </ul>
+            )}
           </div>
-          <div className={styles.filterBox} onClick={() => toggleActive('price')}>
+          <div
+            className={styles.filterBox}
+            onClick={(event) => {
+              event.stopPropagation();
+              toggleActive("price");
+            }}
+          >
             <button type="button">Price</button>
             <span>
               <svg
@@ -94,15 +194,27 @@ export default function CreatePage({ title, products, brands, classifications, c
                 <path d="M18 6L9.5 13L1 6" stroke="black"></path>
               </svg>
             </span>
-            {activeFilter === 'price' && 
-            <ul className={styles.filterOptions}>
+            {activeFilter === "price" && (
+              <ul className={styles.filterOptions} onClick={(event) => event.stopPropagation()}>
                 {prices.map((price, index) => (
-                  <li key={index}>{price}</li>
+                  <li key={index}>
+                    <Checkbox 
+                    label={price}
+                    checked={checkedPrice.indexOf(price) === -1 ? false : true}
+                    onChange={() => handleCheckChange(checkedPrice, price, 'price')}
+                    />
+                  </li>
                 ))}
-            </ul>
-            }
+              </ul>
+            )}
           </div>
-          <div className={styles.filterBox} onClick={() => toggleActive('property')}>
+          <div
+            className={styles.filterBox}
+            onClick={(event) => {
+              event.stopPropagation();
+              toggleActive("property");
+            }}
+          >
             <button type="button">Property</button>
             <span>
               <svg
@@ -115,13 +227,19 @@ export default function CreatePage({ title, products, brands, classifications, c
                 <path d="M18 6L9.5 13L1 6" stroke="black"></path>
               </svg>
             </span>
-            {activeFilter === 'property' && 
-            <ul className={styles.filterOptions}>
+            {activeFilter === "property" && (
+              <ul className={styles.filterOptions} onClick={(event) => event.stopPropagation()}>
                 {properties.map((property, index) => (
-                  <li key={index}>{property}</li>
+                  <li key={index}>
+                   <Checkbox 
+                   label={property}
+                   checked={checkedProperty.indexOf(property) === -1 ? false : true} 
+                  onChange={() => handleCheckChange(checkedProperty, property, 'property')}
+                   />
+                  </li>
                 ))}
-            </ul>
-            }
+              </ul>
+            )}
           </div>
         </div>
         <div className={styles.sortContainer}>
@@ -141,16 +259,33 @@ export default function CreatePage({ title, products, brands, classifications, c
                 src={product.api_featured_image}
                 alt={product.name}
               />
-              <div className={styles.brand}>{product.brand }</div>
+              <div className={styles.brand}>{product.brand}</div>
               <div className={styles.nameContainer}>
-              <span>{product.name}</span>
-              <span className={styles.productType}>{product.product_type}</span>
+                <span>{product.name}</span>
+                <span className={styles.productType}>
+                  {product.product_type}
+                </span>
               </div>
-              <p>${(product.price && product.price > 0) ? `${product.price}` : `${product.price = '15.0'}`}</p>
+              <p>
+                $
+                {product.price && product.price > 0
+                  ? `${product.price}`
+                  : `${(product.price = "15.0")}`}
+              </p>
             </div>
           ))}
         </div>
       </div>
     </div>
   );
+}
+
+const Checkbox = ({label, checked, onChange}) => {
+  return(
+    <label className={styles.checkBox}>
+    <input type="checkbox" checked={checked} onChange={onChange}/>
+        {label}
+      </label>
+  )
+
 }
