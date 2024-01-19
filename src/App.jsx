@@ -5,6 +5,7 @@ import FacePage from "./Pages/FacePage/Face"
 import LipsPage from "./Pages/LipsPage/Lips"
 import NailsPage from "./Pages/NailsPage/Nails"
 import LipstickPage from "./Pages/LipstickPage/Lipstick"
+import ProductPage from "./Pages/ProductPage/ProductPage"
 
 export default function App(){
 
@@ -16,6 +17,7 @@ export default function App(){
             <Route path="/lips" element={<LipsPage />}/>
             <Route path="/nails" element={<NailsPage />}/>
             <Route path="/lipstick" element={<LipstickPage />}/>
+            <Route path="/product" element={<ProductPage />}/>
         </Routes>
     )
 }

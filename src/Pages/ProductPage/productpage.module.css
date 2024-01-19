@@ -1,0 +1,202 @@
+@import url('https://fonts.googleapis.com/css2?family=Mulish:wght@800&display=swap');
+@import url('https://fonts.cdnfonts.com/css/muli');
+
+*{
+    box-sizing: border-box;
+}
+
+::-webkit-scrollbar {
+    width: 3px;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #c9c8c8;
+    border-radius: 3px;
+}
+
+.navContainer{
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+    padding: 0.5rem 3rem;
+    margin-bottom: 1rem;
+    color: #8a8a8a;
+    font-family: Muli;
+}
+
+.navContainer li{
+    list-style: none;
+}
+
+.btnNav:hover{
+    border-bottom: 1px solid #8a8a8a;
+}
+
+.homeBtn{
+    display: flex;
+    gap: 10px;
+    align-items: center;
+}
+
+.productContainer{
+    display: flex;
+    padding: 20px 100px;
+    /* flex-wrap: wrap; */
+    font-family: Muli;
+    justify-content: center;
+    gap:50px;
+}
+
+.imageContainer{
+    width: 400px;
+}
+
+.productImage{
+    width: 100%;
+    margin: 0 auto;
+    display: block;
+    height: 450px;
+}
+
+.productDetails{
+    padding-left: 80px;
+}
+
+.brand{
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    font-size: 26px;
+    font-weight: bold;
+    font-style: italic;
+    font-family: Mulish;
+    font-weight: 900;
+}
+
+.name{
+    padding: 5px 0;
+    font-size: 18px;
+    text-transform: uppercase;
+    font-weight: 700;
+}
+
+.description{
+    width: 500px;
+    max-height: 140px;
+    overflow: auto;
+    margin-top: 0.9rem;
+    margin-bottom: 1rem;
+}
+
+.shadeMenuTitle{
+    font-size: 15px;
+    font-weight: 800;
+    margin-top: 1.4rem;
+    margin-bottom: 1.4rem;
+}
+
+.colors{
+    width: 30px;
+    height: 30px;
+    border-radius: 50%;
+    cursor: pointer;
+}
+
+.shadeWrapper{
+    border-top: 1px solid #c9c8c8;
+    border-bottom: 1px solid #c9c8c8;
+}
+
+.shades{
+    display: flex;
+    gap: 10px 15px;
+    width: 500px;
+    flex-wrap: wrap;
+    max-height: 70px;
+    overflow-y: auto;
+    margin: 18px 0; 
+    box-sizing: border-box;
+}
+
+.productStock{
+    margin: 10px 0;
+}
+
+.deliveryStatus{
+    width: 10px;
+    height: 10px;
+    background-color: #3cbeaf;
+    border-radius: 50%;
+    display: inline-block;
+    margin-right: 5px;
+}
+.availableStatus{
+    font-size: 13px;
+}
+
+.pricesAddToCart{
+    display: flex;
+    gap: 30px;
+    margin-top: 20px;
+}
+
+.addBtn{
+    height: 50px;
+    border-radius: 5px;
+    display: flex;
+    width: 55%;
+    justify-content: space-between;
+    align-items: center;
+    color:white;
+    background-color: #000;
+    border: none;
+    font-weight: bold;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.addTitleBtn{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 50%;
+
+}
+
+.price{
+    height: 70%;
+    border-left: 1px solid white;
+    display: flex;
+    align-items: center;
+    justify-content: space-evenly;
+    width: 50%;
+}
+
+.quantity{
+    display: flex;
+    align-items: center;
+}
+
+.quantity button{
+    border: none;
+    background-color: transparent;
+    font-size: 24px;
+    cursor: pointer;
+}
+
+.quantity button:first-child {
+    font-size: 30px;
+}
+
+.countQuantity{
+    height: 50px;
+    width: 50px;
+    border: 1px solid #e0e0e0;
+    border-radius: 50%;
+    min-width: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #212529;
+    font-weight: bold;
+}
