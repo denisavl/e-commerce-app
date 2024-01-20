@@ -4,6 +4,7 @@ import { lipstickFetch } from "../../fetch";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { price1 } from "../Data";
+import { ApplyFilters } from "../../ApplyFilters";
 
 export default function LipstickPage(){
 
@@ -31,63 +32,17 @@ export default function LipstickPage(){
           setFilteredProducts(products);
       }, [lipstickProducts.data])
   
-      const showProducts = (filters) =>{ 
-        let filteredResults = [...allProducts];
-  
-        if(filters.brand.length > 0){
-          filteredResults = filteredResults.filter(product => (
-            filters.brand.includes(product.brand)
-          ))
-        }
-  
-        if(filters.classification.length > 0){
-          filteredResults = filteredResults.filter(product => (
-            filters.classification.includes(product.product_type)
-          ))
-        }
-  
-        if(filters.property.length > 0){
-          filteredResults = filteredResults.filter(product => {
-            const productProperties = Array.isArray(product.tag_list)
-            ? product.tag_list.map((prop) => prop.toLowerCase())
-            : [];
-            return filters.property.some(prop =>
-              productProperties.includes(prop.toLowerCase()))
-        })
-        }
-  
-        if (filters.color.length > 0) {
-          filteredResults = filteredResults.filter((product) => {
-            const productColors = product.product_colors.map((color) =>
-            color.colour_name ? color.colour_name.toLowerCase() : null
-            );
-            const filteredColor = productColors.filter( color => color !== null);
-            const matches = filters.color.some((selectedColor) =>
-            filteredColor.some((productColor) =>
-                productColor.includes(selectedColor.toLowerCase())
-              )
-            );
-            return matches;
-          });
-        }
-  
-        if(filters.price.length > 0){
-          filteredResults = filteredResults.filter(product => {
-          const prices = parseFloat(product.price);
-          let intervals = price1.find(item => prices >= item.array[0] && prices <= item.array[1])
-          return intervals && filters.price.includes(intervals.name);
-          })
-          
-        }
+      const showFilteredResults = (filters) => {
+        const filteredResults = ApplyFilters(allProducts, filters, price1)
         setFilteredProducts(filteredResults);
-      }
+      };
      
       function handleFilter(filters, category)
       {
         let newFilter = {...selectedFilter};
         newFilter[category] = filters;
   
-        showProducts(newFilter);
+        showFilteredResults(newFilter);
         setSelectedFilter(newFilter);
       }
 

@@ -1,5 +1,4 @@
 /* eslint-disable react/prop-types */
-
 import styles from "../CreatePage/createPage.module.css";
 import Header from "../../components/Header/Header";
 import { useState, useEffect } from "react";
@@ -22,6 +21,7 @@ export default function CreatePage({
   const [checkedColor, setCheckedColor] = useState([]);
   const [checkedPrice, setCheckedPrice] = useState([]);
   const [checkedProperty, setCheckedProperty] = useState([]);
+  const [selectedSort, setSelectedSort] = useState('popularity');
 
   function handleCheckChange(prevChecked, value, filter) {
 

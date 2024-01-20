@@ -43,7 +43,6 @@ export default function App(){
       const lipstickProducts = lipstickProduct.data || [];
       const lipsProducts = useCategoryProducts('lips');
       const nailsProducts = useCategoryProducts('nails')
-    // console.log(eyesProducts)
 
     return (
         <Routes> 
@@ -81,7 +80,6 @@ export default function App(){
                 <Route key={product.id} path={`/lipstick/${product.id}`} element={<ProductPage productId = {product.id}
                 category={'lipstick'}/>}/>
             )}
-            {/* <Route path="/product" element={<ProductPage />}/> */}
         </Routes>
     )
 }
