@@ -101,6 +101,7 @@ export default function LipstickPage(){
         properties={properties}
         prices={['< 15', '15 - 29.99', '30 - 44.99', '45 - 59.99', '> 60']}
         handleFilter={(filters, category) => handleFilter(filters, category)}
+        category={'lipstick'}
         />
     )
 }

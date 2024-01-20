@@ -39,7 +39,7 @@ export default function EyesPage() {
       );
       setFilteredProducts(products);
       setAllProducts(products);
-      console.log(products);
+      // console.log(products);
     }
   }, [eyesProducts.data, eyesProducts.isSuccess]);
 
@@ -116,6 +116,7 @@ export default function EyesPage() {
       properties={properties}
       prices={["< 15", "15 - 29.99", "30 - 44.99", "45 - 59.99", "> 60"]}
       handleFilter={(filters, category) => handleFilter(filters, category)}
+      category={'eyes'}
     />
   );
 }

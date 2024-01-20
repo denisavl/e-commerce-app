@@ -110,6 +110,7 @@ export default function FacePage(){
         properties={properties}
         prices={['< 15', '15 - 29.99', '30 - 44.99', '45 - 59.99', '> 60']}
         handleFilter={(filter, category) => handleFilter(filter, category)}
+        category={'face'}
         />
     )
 }

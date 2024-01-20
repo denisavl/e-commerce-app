@@ -3,6 +3,7 @@
 import styles from "../CreatePage/createPage.module.css";
 import Header from "../../components/Header/Header";
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 
 export default function CreatePage({
   title,
@@ -12,7 +13,8 @@ export default function CreatePage({
   colors,
   prices,
   properties,
-  handleFilter
+  handleFilter,
+  category
 }) {
   const [activeFilter, setActiveFilter] = useState(null);
   const [checkedBrand, setCheckedBrand] = useState([]);
@@ -253,6 +255,8 @@ export default function CreatePage({
         </div>
         <div className={styles.productsContainer}>
           {products.map((product, index) => (
+            <Link to={`/${category}/${product.id}`} key={product.id}>
+            
             <div key={index} className={styles.productBox}>
               <img
                 className={styles.productImg}
@@ -273,6 +277,7 @@ export default function CreatePage({
                   : `${(product.price = "15.0")}`}
               </p>
             </div>
+            </Link>
           ))}
         </div>
       </div>

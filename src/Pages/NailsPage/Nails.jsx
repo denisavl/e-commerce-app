@@ -111,6 +111,7 @@ export default function NailsPage() {
       properties={properties}
       prices={priceIntervals}
       handleFilter={(filters, category) => handleFilter(filters, category)}
+      category={'nails'}
     />
   );
 }
