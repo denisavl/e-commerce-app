@@ -17,6 +17,7 @@ export default function LipsPage(){
       property: [],
     });
     const [filteredProducts, setFilteredProducts] = useState([]);
+    const [sortedProducts, setSortedProducts] = useState('popularity');
 
     const lipsProducts = useQuery({
         queryKey: ["face"],
@@ -27,6 +28,11 @@ export default function LipsPage(){
       const brands = [...new Set(allProducts.map(product => product.brand))].filter(brand => brand !== null);
       const properties = [...new Set(allProducts.flatMap(product => product.tag_list))]
 
+      const setDefaultOrder = (product) => {
+        const defaultSortedProducts = [...product].sort((a, b) => b.id - a.id);
+        setFilteredProducts(defaultSortedProducts);
+        setAllProducts(defaultSortedProducts)
+      }
 
     useEffect(() => {
       if (lipsProducts.isSuccess) {
@@ -38,6 +44,7 @@ export default function LipsPage(){
         );
         setAllProducts(products);
         setFilteredProducts(products);
+        setDefaultOrder(products);
     }}, [lipsProducts.data, lipsProducts.isSuccess])
 
     const showFilteredResults = (filters) => {
@@ -63,6 +70,9 @@ export default function LipsPage(){
         properties={properties}
         prices={['< 15', '15 - 29.99', '30 - 44.99', '45 - 59.99', '> 60']}
         handleFilter={(filters, category) => handleFilter(filters, category)}
+        sortedProducts={sortedProducts}
+      setSortedProducts={setSortedProducts}
+      setDefaultOrder={setDefaultOrder}
         category={'lips'}
         />
     )

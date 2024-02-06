@@ -17,6 +17,7 @@ export default function EyesPage() {
     color: [],
     price: [],
   });
+  const [sortedProducts, setSortedProducts] = useState('popularity');
 
   const eyesProducts = useQuery({
     queryKey: ["eyes"],
@@ -30,6 +31,12 @@ export default function EyesPage() {
     ...new Set(allProducts.flatMap((product) => product.tag_list)),
   ];
 
+  const setDefaultOrder = (product) => {
+    const defaultSortedProducts = [...product].sort((a, b) => b.id - a.id);
+    setFilteredProducts(defaultSortedProducts);
+    setAllProducts(defaultSortedProducts)
+  }
+
   useEffect(() => {
     if (eyesProducts.isSuccess) {
       const products = eyesProducts.data.successfulResults.flatMap((result) =>
@@ -40,7 +47,7 @@ export default function EyesPage() {
       );
       setFilteredProducts(products);
       setAllProducts(products);
-      // console.log(products);
+      setDefaultOrder(products);
     }
   }, [eyesProducts.data, eyesProducts.isSuccess]);
 
@@ -68,6 +75,9 @@ export default function EyesPage() {
       properties={properties}
       prices={["< 15", "15 - 29.99", "30 - 44.99", "45 - 59.99", "> 60"]}
       handleFilter={(filters, category) => handleFilter(filters, category)}
+      sortedProducts={sortedProducts}
+      setSortedProducts={setSortedProducts}
+      setDefaultOrder={setDefaultOrder}
       category={'eyes'}
     />
   );

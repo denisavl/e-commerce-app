@@ -17,7 +17,7 @@ export default function FacePage(){
       property: [],
     });
     const [filteredProducts, setFilteredProducts] = useState([]);
-
+    const [sortedProducts, setSortedProducts] = useState('popularity');
 
     const faceProducts = useQuery({
         queryKey: ["face"],
@@ -26,6 +26,12 @@ export default function FacePage(){
 
       const brands = [...new Set(allProducts.map(product => product.brand))].filter(brand => brand !== null);
       const properties = [...new Set(allProducts.flatMap(product => product.tag_list))] 
+
+      const setDefaultOrder = (product) => {
+        const defaultSortedProducts = [...product].sort((a, b) => b.id - a.id);
+        setFilteredProducts(defaultSortedProducts);
+        setAllProducts(defaultSortedProducts)
+      }
 
     useEffect(() => {
       if (faceProducts.isSuccess) {
@@ -37,6 +43,7 @@ export default function FacePage(){
         );
         setAllProducts(products);
         setFilteredProducts(products);
+        setDefaultOrder(products);
     }}, [faceProducts.data, faceProducts.isSuccess])
 
     const showFilteredResults = (filters) => {
@@ -63,6 +70,9 @@ export default function FacePage(){
         properties={properties}
         prices={['< 15', '15 - 29.99', '30 - 44.99', '45 - 59.99', '> 60']}
         handleFilter={(filter, category) => handleFilter(filter, category)}
+        sortedProducts={sortedProducts}
+      setSortedProducts={setSortedProducts}
+      setDefaultOrder={setDefaultOrder}
         category={'face'}
         />
     )

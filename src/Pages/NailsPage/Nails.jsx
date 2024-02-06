@@ -17,6 +17,7 @@ export default function NailsPage() {
     property: [],
   });
   const [filteredProducts, setFilteredProducts] = useState([]);
+  const [sortedProducts, setSortedProducts] = useState('popularity');
 
   const nailsProducts = useQuery({
     queryKey: ["face"],
@@ -31,6 +32,12 @@ export default function NailsPage() {
   ];
   const priceIntervals = ["< 5", "5 - 9.99", "10 - 14.99", "> 15"];
 
+  const setDefaultOrder = (product) => {
+    const defaultSortedProducts = [...product].sort((a, b) => b.id - a.id);
+    setFilteredProducts(defaultSortedProducts);
+    setAllProducts(defaultSortedProducts)
+  }
+
   useEffect(() => {
     if (nailsProducts.isSuccess) {
       const products = nailsProducts.data.successfulResults.flatMap((result) =>
@@ -41,6 +48,7 @@ export default function NailsPage() {
       );
       setAllProducts(products);
       setFilteredProducts(products);
+      setDefaultOrder(products);
   }}, [nailsProducts.data, nailsProducts.isSuccess])
 
   const showFilteredResults = (filters) => {
@@ -66,6 +74,9 @@ export default function NailsPage() {
       properties={properties}
       prices={priceIntervals}
       handleFilter={(filters, category) => handleFilter(filters, category)}
+      sortedProducts={sortedProducts}
+      setSortedProducts={setSortedProducts}
+      setDefaultOrder={setDefaultOrder}
       category={'nails'}
     />
   );

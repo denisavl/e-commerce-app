@@ -13,7 +13,10 @@ export default function CreatePage({
   prices,
   properties,
   handleFilter,
-  category
+  category,
+  sortedProducts,
+  setSortedProducts,
+  setDefaultOrder
 }) {
   const [activeFilter, setActiveFilter] = useState(null);
   const [checkedBrand, setCheckedBrand] = useState([]);
@@ -21,10 +24,8 @@ export default function CreatePage({
   const [checkedColor, setCheckedColor] = useState([]);
   const [checkedPrice, setCheckedPrice] = useState([]);
   const [checkedProperty, setCheckedProperty] = useState([]);
-  const [selectedSort, setSelectedSort] = useState('popularity');
 
   function handleCheckChange(prevChecked, value, filter) {
-
     const currentIndex = prevChecked.indexOf(value);
     const newChecked = [...prevChecked];
     if(currentIndex === -1) {
@@ -52,6 +53,28 @@ export default function CreatePage({
   }
     handleFilter(newChecked, filter);
   }
+
+  const ApplySort = (selectedSort) => {
+    switch (selectedSort) {
+      case "popularity":
+        setSortedProducts(selectedSort);
+        setDefaultOrder(products)
+        break;
+      case "low":
+        products.sort((a, b) => a.price - b.price);
+        setSortedProducts(selectedSort);
+        break;
+      case "big":
+        products.sort((a, b) => b.price - a.price);
+        setSortedProducts(selectedSort);
+        break;
+      default:
+        setSortedProducts('popularity');
+        setDefaultOrder(products)
+        break;
+    }
+    return products;
+  };
 
   function toggleActive(filter) {
     setActiveFilter(activeFilter === filter ? null : filter);
@@ -246,11 +269,10 @@ export default function CreatePage({
         </div>
         <div className={styles.sortContainer}>
           <span>Sort by:</span>
-          <select name="sort" id="sort">
+          <select name="sort" id="sort" value={sortedProducts} onChange={(event) => ApplySort(event.target.value)}>
             <option value="popularity">Popularity</option>
             <option value="low">Price low to high</option>
             <option value="big">Price high to low</option>
-            <option value="latest">Latest</option>
           </select>
         </div>
         <div className={styles.productsContainer}>
