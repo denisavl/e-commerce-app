@@ -1,0 +1,150 @@
+@import url('https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap');
+
+
+/* empty cart */
+
+.emptyCartContainer{
+    font-family: 'Roboto', sans-serif;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.emptyCartTitle{
+    font-weight: bold;
+    padding-top: 20px;
+}
+
+.emptyCartImg{
+    width: 500px;
+    
+}
+
+.continueShopping{
+    font-weight: bold;
+    color: rgb(119, 119, 119);
+}
+
+/* filled cart */
+
+.filledCartContainer{
+    padding: 20px 100px;
+    font-family: 'Roboto', sans-serif;
+}
+
+.cartTableHeader{
+    display: grid;
+    grid-template-columns: 2.3fr 1.5fr 1fr 0.8fr 0.3fr;
+    border-bottom: 1px solid #ccc;
+    padding: 8px;
+    font-size: 18px;
+    font-weight: bolder;
+    margin-right: 10px;
+    letter-spacing: 1px;
+}
+
+.filledCartTitle{
+    font-size: 28px;
+}
+
+.cartItem{
+    border-bottom: 1px solid #ccc;
+    padding: 15px 0;
+    display: grid;
+    grid-template-columns: 2.3fr 1.5fr 1fr 0.8fr 0.3fr;
+}
+
+.cartInfo{
+    display: flex;
+}
+
+.imgProductCont{
+    padding-left: 0.25rem;
+    padding-right: 1.5em;
+}
+
+.productImg{
+    width: 100px;
+    height: 100px;
+}
+
+.productName{
+    font-weight: bolder;
+}
+
+.productType{
+    color: #8a8a8a;
+}
+
+.cartItemQuantity select{
+    width: 55px;
+    height: 50px;
+    padding: 10px;
+    border: 1px solid #9c9c9c;
+    border-radius: 3px;
+    color: #424040;
+}
+
+.delete > button{
+    padding: 6px 10px;
+    background-color: transparent;
+    border-radius: 4px;
+    border: 1px solid rgb(124, 123, 123);
+    font-size: 17px;
+    cursor: pointer;
+    color: rgb(61, 61, 61);
+}
+
+.summary{
+    margin-top: 80px;
+    margin-bottom: 40px;
+    background-color: #f8f7f7;
+    padding: 5px 20px 40px 30px;
+    border-radius: 3px;
+}
+
+.summaryTitle, .amount{
+    padding: 20px 0;
+    margin: 0;
+    font-size: 17px;
+}
+
+.totalAmount,
+.deliveryCost{
+    display: flex;
+    justify-content: space-between;
+}
+
+.deliveryCost{
+    border-bottom: 1px solid #ccc;
+    padding-bottom: 15px;
+}
+
+.total, 
+.noVAT,
+.vat {
+    display: flex;
+    justify-content: space-between;
+    padding-bottom: 10px;
+}
+
+.promoCode{
+    padding: 14px 18% 14px 13px;
+    border-radius: 3px;
+    border: 1px solid rgb(124, 123, 123);
+}
+
+.completeOrder{
+    padding: 15px 0;
+}
+
+.completeOrder > button {
+    padding: 14px 9%;
+    border-radius: 3px;
+    border: 1px solid rgb(124, 123, 123);
+    color:white;
+    background-color: #212121;
+    font-weight: bold;
+    letter-spacing: 1px;
+}

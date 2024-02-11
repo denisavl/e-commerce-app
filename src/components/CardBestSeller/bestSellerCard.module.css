@@ -17,7 +17,7 @@
     border-radius: 3px;
 }
 
-p{
+.cardContainer > p{
     height: 40px;
 }
 

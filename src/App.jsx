@@ -6,6 +6,7 @@ import LipsPage from "./Pages/LipsPage/Lips"
 import NailsPage from "./Pages/NailsPage/Nails"
 import LipstickPage from "./Pages/LipstickPage/Lipstick"
 import ProductPage from "./Pages/ProductPage/ProductPage"
+import Cart from './Pages/CartPage/Cart'
 import { useQuery } from "@tanstack/react-query";
 import { fetchProducts, lipstickFetch } from "./fetch"
 
@@ -80,6 +81,7 @@ export default function App(){
                 <Route key={product.id} path={`/lipstick/${product.id}`} element={<ProductPage productId = {product.id}
                 category={'lipstick'}/>}/>
             )}
+            <Route path="/cart" element={<Cart />}/>
         </Routes>
     )
 }
