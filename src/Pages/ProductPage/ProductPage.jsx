@@ -6,7 +6,7 @@ import { fetchProducts } from "../../fetch";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-export default function ProductPage({productId, category}) {
+export default function ProductPage({productId, category, cartProd, decrementCount, incrementCount, addToCart, count, setCount}) {
   const [displayProduct, setDisplayProduct] = useState(null);
   const product = useQuery({
     queryKey: ["products"],
@@ -22,12 +22,20 @@ export default function ProductPage({productId, category}) {
     }
    
   }, [product.data, product.isSuccess, productId]);
+
   function capitalizeFirstLetter(str) {
     return str.charAt(0).toUpperCase() + str.slice(1);
   }
+
+  useEffect(() => {
+    return () => {
+      setCount(1);
+    };
+  }, [setCount]);
+
   return (
     <div>
-      <Header />
+      <Header cartProd={cartProd}/>
       <div className={styles.pageContent}>
         <nav className={styles.navBar}>
           <ul className={styles.navContainer}>
@@ -84,18 +92,18 @@ export default function ProductPage({productId, category}) {
                 <span className={styles.availableStatus}>Available Online</span>
               </div>
               <div className={styles.pricesAddToCart}>
-                <button type="submit" className={styles.addBtn}>
+                <button type="submit" className={styles.addBtn} onClick={() => addToCart(count)}>
                   <span className={styles.addTitleBtn}>ADD</span>
                   <span className={styles.price}>
                     {displayProduct.price ? displayProduct.price : "15.0"}$
                   </span>
                 </button>
                 <div className={styles.quantity}>
-                  <button type="button" className={styles.minusQuantity}>
+                  <button type="button" className={styles.minusQuantity} onClick={decrementCount}>
                     -
                   </button>
-                  <div className={styles.countQuantity}>1</div>
-                  <button type="button" className={styles.plusQuantity}>
+                  <div className={styles.countQuantity}>{count}</div>
+                  <button type="button" className={styles.plusQuantity} onClick={incrementCount}>
                     +
                   </button>
                 </div>

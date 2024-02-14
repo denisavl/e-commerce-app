@@ -1,4 +1,4 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import CreatePage from "../CreatePage/CreatePage";
 import { fetchProducts } from "../../fetch";
 import { useQuery } from "@tanstack/react-query";
@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { price2 } from "../Data";
 import { ApplyFilters } from "../../ApplyFilters";
 
-export default function NailsPage() {
+export default function NailsPage({cartProd}) {
   const nailsProductTypes = ["nail_polish"];
   const [allProducts, setAllProducts] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState({
@@ -78,6 +78,7 @@ export default function NailsPage() {
       setSortedProducts={setSortedProducts}
       setDefaultOrder={setDefaultOrder}
       category={'nails'}
+      cartProd={cartProd}
     />
   );
 }

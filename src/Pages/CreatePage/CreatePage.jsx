@@ -16,7 +16,8 @@ export default function CreatePage({
   category,
   sortedProducts,
   setSortedProducts,
-  setDefaultOrder
+  setDefaultOrder,
+  cartProd
 }) {
   const [activeFilter, setActiveFilter] = useState(null);
   const [checkedBrand, setCheckedBrand] = useState([]);
@@ -95,7 +96,7 @@ export default function CreatePage({
 
   return (
     <div>
-      <Header />
+      <Header cartProd={cartProd}/>
       <div className={styles.pageContainer}>
         <h1 className={styles.titlePage}>
           {title} products {`(${products.length})`}

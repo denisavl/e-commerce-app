@@ -1,9 +1,18 @@
+/* eslint-disable react/prop-types */
 import logoImg from "../../assets/logo.png";
 import styles from "./header.module.css";
 import basketIcon from "../../assets/shopping-cart.png";
+import CartPreview from "../CartPreview/CartPreview";
 import { Link } from "react-router-dom";
+import { useState } from "react";
 
-const Header = () => {
+const Header = ({cartProd}) => {
+  const totalQuantity = cartProd.reduce((total, item) => total + item.quantity, 0);
+  const [showCart, setShowCart] = useState(false);
+
+  function toggleActive(){
+    setShowCart(!showCart);
+  }
   return (
     <div className={styles.headerContainer}>
       <ul className={styles.buttons}>
@@ -47,12 +56,17 @@ const Header = () => {
             />
           </form>
         </div>
+        <div className={styles.cart} onClick={toggleActive}>
         <img
           className={styles.basketShop}
           src={basketIcon}
           alt="basket icon img"
         />
+        <span className={styles.countCart}>{totalQuantity}</span>
+        </div>
+        
       </div>
+      {showCart && <CartPreview product={cartProd}/>}
     </div>
   );
 };

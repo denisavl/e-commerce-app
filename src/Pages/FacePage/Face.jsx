@@ -1,12 +1,12 @@
-/* eslint-disable no-unused-vars */
+/* eslint-disable react/prop-types */
 import CreatePage from '../CreatePage/CreatePage'
 import { fetchProducts } from '../../fetch'
 import { useQuery } from "@tanstack/react-query";
-import { price1, price2 } from "../Data";
+import { price1 } from "../Data";
 import { useState, useEffect } from 'react';
 import { ApplyFilters } from "../../ApplyFilters";
 
-export default function FacePage(){
+export default function FacePage({cartProd}){
     const faceProductTypes = ['foundation', 'blush', 'bronzer'];
     const [allProducts, setAllProducts] = useState([]);
     const [selectedFilter, setSelectedFilter] = useState({
@@ -71,9 +71,10 @@ export default function FacePage(){
         prices={['< 15', '15 - 29.99', '30 - 44.99', '45 - 59.99', '> 60']}
         handleFilter={(filter, category) => handleFilter(filter, category)}
         sortedProducts={sortedProducts}
-      setSortedProducts={setSortedProducts}
-      setDefaultOrder={setDefaultOrder}
+        setSortedProducts={setSortedProducts}
+        setDefaultOrder={setDefaultOrder}
         category={'face'}
+        cartProd={cartProd}
         />
     )
 }

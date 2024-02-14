@@ -1,3 +1,4 @@
+/* eslint-disable react/prop-types */
 import CreatePage from "../CreatePage/CreatePage";
 import { fetchProducts } from "../../fetch";
 import { useQuery } from "@tanstack/react-query";
@@ -5,7 +6,7 @@ import { useState, useEffect } from "react";
 import { price1 } from "../Data";
 import { ApplyFilters } from "../../ApplyFilters";
 
-export default function EyesPage() {
+export default function EyesPage({cartProd}) {
   const eyesProductsTypes = ["eyebrow", "eyeliner", "eyeshadow", "mascara"];
 
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -79,6 +80,7 @@ export default function EyesPage() {
       setSortedProducts={setSortedProducts}
       setDefaultOrder={setDefaultOrder}
       category={'eyes'}
+      cartProd={cartProd}
     />
   );
 }
