@@ -66,7 +66,7 @@ const Header = ({cartProd}) => {
         </div>
         
       </div>
-      {showCart && <CartPreview product={cartProd}/>}
+      {showCart && <CartPreview product={cartProd} showCart={showCart} toggleActive={toggleActive}/>}
     </div>
   );
 };

@@ -7,11 +7,6 @@ import { Link } from "react-router-dom";
 // import { useQuery } from "@tanstack/react-query";
 
 export default function Cart({cartProd}) {
-  // const makeup = useQuery({
-  //   queryKey: ["makeup"],
-  //   queryFn: () => fetchCarousel(),
-  // });
-  // const limitedData = makeup.data?.slice(0, 4) || [];
 
   return (
     <div className={styles.cartContainer}>
@@ -73,7 +68,7 @@ export default function Cart({cartProd}) {
                   <span>${product.price ? product.price : "15.00"}</span>
                 </div>
                 <div className={styles.cartItemSubtotal}>
-                  <span>${product.price ? product.price : "15.00"}</span>
+                  <span>  ${((product.quantity * product.price) % 1 === 0) ? (product.quantity * product.price).toFixed(1) : (product.quantity * product.price)}</span>
                 </div>
                 <div className={styles.delete}>
                   <button type="button">X</button>

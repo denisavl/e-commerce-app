@@ -1,0 +1,139 @@
+@import url('https://fonts.cdnfonts.com/css/poppins?styles=20390');
+
+.moduleContainer{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    overflow-y: auto;
+}
+
+.cartPreviewContainer{
+    position: fixed;
+    right: 0;
+    background-color: white;
+    height: 100%;
+    width: 27%;
+    overflow-y: auto;
+    font-family: 'Poppins', sans-serif;
+}
+
+.continueShoppingBtn
+{
+    background-color: #212121;
+    color: white;
+    padding: 22px 28px;
+    width: 100%;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.completeOrderBtn{
+    width: 90%;
+    margin: 30px auto;
+    display: block;
+    padding: 10px;
+    background-color: transparent;
+    cursor: pointer;
+    font-weight: bold;
+}
+
+.shoppingCart{
+    font-size: 20px;
+    padding: 10px 14px;
+    margin: 10px 0px;
+}
+
+.emptyCart{
+    padding: 5px;
+    width: 90%;
+    background-color: #e6f6f4;
+    margin: 0 auto;
+    display: flex;
+    gap: 10px;
+}
+
+.infoIcon{
+    width: 20px;
+}
+
+.container{
+    width: 100%;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 12px;
+}
+
+.prodContainer{
+    box-sizing: border-box;
+    display: flex;
+    align-items: center;
+    width: 95%;
+    gap: 20px;
+    border: 1px solid #ccc;
+    padding: 15px;
+}
+
+.right{
+    width: 100%;
+}
+
+.headerCont{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.name{
+    font-weight: bold;
+    text-transform: uppercase;
+    font-size: 14px;
+}
+
+.headerCont > img{
+    width: 20px;
+}
+
+.productImg{
+    width: 60px;
+    height: 65px;
+}
+
+.shade{
+    font-size: 12px;
+    text-transform: uppercase;
+    word-wrap: break-word;
+    padding: 8px 0;
+}
+
+.quantity{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    border-top: 1px solid black;
+    border-bottom: 1px solid black;
+    padding: 2px 0;
+    width: 30%;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.quantity > button{
+    border: none;
+    background-color: transparent;
+    cursor: pointer;
+}
+
+.bottom{
+    display: flex;
+    justify-content: space-between;
+}
+
+.price{
+    font-weight: bold;
+}
