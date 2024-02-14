@@ -6,7 +6,7 @@ import { price1 } from "../Data";
 import { useState, useEffect } from 'react';
 import { ApplyFilters } from "../../ApplyFilters";
 
-export default function FacePage({cartProd}){
+export default function FacePage({cartProd, showCart, toggleActive, handleDelete}){
     const faceProductTypes = ['foundation', 'blush', 'bronzer'];
     const [allProducts, setAllProducts] = useState([]);
     const [selectedFilter, setSelectedFilter] = useState({
@@ -75,6 +75,9 @@ export default function FacePage({cartProd}){
         setDefaultOrder={setDefaultOrder}
         category={'face'}
         cartProd={cartProd}
+        showCart={showCart}
+      toggleActive={toggleActive}
+      handleDelete={handleDelete}
         />
     )
 }

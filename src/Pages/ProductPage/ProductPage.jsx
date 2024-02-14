@@ -6,7 +6,18 @@ import { fetchProducts } from "../../fetch";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
-export default function ProductPage({productId, category, cartProd, decrementCount, incrementCount, addToCart, count, setCount}) {
+export default function ProductPage({
+  productId, 
+  category, 
+  cartProd,
+   decrementCount, 
+   incrementCount,
+    addToCart, 
+    count, 
+    setCount,
+  showCart,
+toggleActive,
+handleDelete}) {
   const [displayProduct, setDisplayProduct] = useState(null);
   const product = useQuery({
     queryKey: ["products"],
@@ -35,7 +46,12 @@ export default function ProductPage({productId, category, cartProd, decrementCou
 
   return (
     <div>
-      <Header cartProd={cartProd}/>
+      <Header 
+      cartProd={cartProd} 
+      showCart={showCart} 
+      toggleActive={toggleActive}
+      handleDelete={handleDelete}
+      />
       <div className={styles.pageContent}>
         <nav className={styles.navBar}>
           <ul className={styles.navContainer}>

@@ -4,7 +4,7 @@ import { Link } from 'react-router-dom';
 import infoIcon from '../../assets/infoIcon.svg'
 import closeBtn from '../../assets/closeBtn.png'
 
-export default function CartPreview({product, showCart, toggleActive, }){
+export default function CartPreview({product, showCart, toggleActive, handleDelete }){
     return (
         showCart && (
           <div className={styles.moduleContainer} onClick={toggleActive}>
@@ -36,7 +36,7 @@ export default function CartPreview({product, showCart, toggleActive, }){
                       <div className={styles.right}>
                         <div className={styles.headerCont}>
                           <div className={styles.name}>{item.name}</div>
-                          <img src={closeBtn} alt="Close Button" />
+                          <img src={closeBtn} alt="Close Button" onClick={() => handleDelete(item.id)}/>
                         </div>
                         <div className={styles.shade}>B16 - the shade of the product</div>
                         <div className={styles.bottom}>

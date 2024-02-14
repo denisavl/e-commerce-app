@@ -4,15 +4,9 @@ import styles from "./header.module.css";
 import basketIcon from "../../assets/shopping-cart.png";
 import CartPreview from "../CartPreview/CartPreview";
 import { Link } from "react-router-dom";
-import { useState } from "react";
 
-const Header = ({cartProd}) => {
+const Header = ({cartProd, showCart, toggleActive, handleDelete}) => {
   const totalQuantity = cartProd.reduce((total, item) => total + item.quantity, 0);
-  const [showCart, setShowCart] = useState(false);
-
-  function toggleActive(){
-    setShowCart(!showCart);
-  }
   return (
     <div className={styles.headerContainer}>
       <ul className={styles.buttons}>
@@ -66,7 +60,12 @@ const Header = ({cartProd}) => {
         </div>
         
       </div>
-      {showCart && <CartPreview product={cartProd} showCart={showCart} toggleActive={toggleActive}/>}
+      {showCart && 
+      <CartPreview 
+      product={cartProd} 
+      showCart={showCart} 
+      toggleActive={toggleActive}
+      handleDelete={handleDelete}/>}
     </div>
   );
 };

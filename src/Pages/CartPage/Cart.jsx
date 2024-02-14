@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 // import { fetchCarousel } from "../../fetch";
 // import { useQuery } from "@tanstack/react-query";
 
-export default function Cart({cartProd}) {
+export default function Cart({cartProd, handleDelete}) {
 
   return (
     <div className={styles.cartContainer}>
@@ -71,7 +71,7 @@ export default function Cart({cartProd}) {
                   <span>  ${((product.quantity * product.price) % 1 === 0) ? (product.quantity * product.price).toFixed(1) : (product.quantity * product.price)}</span>
                 </div>
                 <div className={styles.delete}>
-                  <button type="button">X</button>
+                  <button type="button" onClick={() => handleDelete(product.id)}>X</button>
                 </div>
               </div>
             ))}

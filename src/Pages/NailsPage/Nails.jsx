@@ -6,7 +6,7 @@ import { useState, useEffect } from "react";
 import { price2 } from "../Data";
 import { ApplyFilters } from "../../ApplyFilters";
 
-export default function NailsPage({cartProd}) {
+export default function NailsPage({cartProd, showCart, toggleActive, handleDelete}) {
   const nailsProductTypes = ["nail_polish"];
   const [allProducts, setAllProducts] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState({
@@ -79,6 +79,9 @@ export default function NailsPage({cartProd}) {
       setDefaultOrder={setDefaultOrder}
       category={'nails'}
       cartProd={cartProd}
+      showCart={showCart}
+      toggleActive={toggleActive}
+      handleDelete={handleDelete}
     />
   );
 }

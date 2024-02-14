@@ -9,7 +9,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import styles from "./homePage.module.css";
 
-export default function HomePage({cartProd}) {
+export default function HomePage({cartProd, showCart, toggleActive, handleDelete}) {
   const makeup = useQuery({
     queryKey: ["makeup"],
     queryFn: () => fetchCarousel(),
@@ -46,7 +46,11 @@ export default function HomePage({cartProd}) {
 
   return (
     <>
-      <Header cartProd={cartProd}/>
+      <Header 
+      cartProd={cartProd} 
+      showCart={showCart}
+      toggleActive={toggleActive}
+      handleDelete={handleDelete}/>
       <Poster />
       <Brands />
       <h1 className={styles.headerSeller}>Best Seller</h1>

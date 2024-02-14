@@ -17,7 +17,10 @@ export default function CreatePage({
   sortedProducts,
   setSortedProducts,
   setDefaultOrder,
-  cartProd
+  cartProd,
+  showCart,
+  toggleActive,
+  handleDelete
 }) {
   const [activeFilter, setActiveFilter] = useState(null);
   const [checkedBrand, setCheckedBrand] = useState([]);
@@ -77,7 +80,7 @@ export default function CreatePage({
     return products;
   };
 
-  function toggleActive(filter) {
+  function toggleActiveFilter(filter) {
     setActiveFilter(activeFilter === filter ? null : filter);
   }
 
@@ -96,7 +99,11 @@ export default function CreatePage({
 
   return (
     <div>
-      <Header cartProd={cartProd}/>
+      <Header 
+      cartProd={cartProd} 
+      showCart={showCart} 
+      toggleActive={toggleActive}
+      handleDelete={handleDelete}/>
       <div className={styles.pageContainer}>
         <h1 className={styles.titlePage}>
           {title} products {`(${products.length})`}
@@ -106,7 +113,7 @@ export default function CreatePage({
             className={styles.filterBox}
             onClick={(event) => {
               event.stopPropagation();
-              toggleActive("brand");
+              toggleActiveFilter("brand");
             }}
           >
             <button type="button">Brands</button>
@@ -139,7 +146,7 @@ export default function CreatePage({
             className={styles.filterBox}
             onClick={(event) => {
               event.stopPropagation();
-              toggleActive("classification");
+              toggleActiveFilter("classification");
             }}
           >
             <button type="button">Classification</button>
@@ -172,7 +179,7 @@ export default function CreatePage({
             className={styles.filterBox}
             onClick={(event) => {
               event.stopPropagation();
-              toggleActive("color");
+              toggleActiveFilter("color");
             }}
           >
             <button type="button">Color</button>
@@ -205,7 +212,7 @@ export default function CreatePage({
             className={styles.filterBox}
             onClick={(event) => {
               event.stopPropagation();
-              toggleActive("price");
+              toggleActiveFilter("price");
             }}
           >
             <button type="button">Price</button>
@@ -238,7 +245,7 @@ export default function CreatePage({
             className={styles.filterBox}
             onClick={(event) => {
               event.stopPropagation();
-              toggleActive("property");
+              toggleActiveFilter("property");
             }}
           >
             <button type="button">Property</button>

@@ -52,6 +52,11 @@ export default function App() {
 
   const [count, setCount] = useState(1);
   const [cartProd, setCartProd] = useState([]);
+  const [showCart, setShowCart] = useState(false);
+
+  function toggleActive() {
+    setShowCart(!showCart);
+  }
 
   function decrementCount() {
     if (count > 1) {
@@ -65,127 +70,210 @@ export default function App() {
     }
   }
 
-  function addToCart(product, quantity){
-    const currentIndex = cartProd.findIndex(item => item.id === product.id);
-    if(currentIndex !== -1){
+  function addToCart(product, quantity) {
+    toggleActive();
+    const currentIndex = cartProd.findIndex((item) => item.id === product.id);
+    if (currentIndex !== -1) {
       const updatedCartProd = [...cartProd];
       updatedCartProd[currentIndex] = {
         ...updatedCartProd[currentIndex],
-        quantity: updatedCartProd[currentIndex].quantity + quantity
-      }
-      setCartProd(updatedCartProd)
-    }
-    else {
-      setCartProd(prevCartProd => [
+        quantity: updatedCartProd[currentIndex].quantity + quantity,
+      };
+      setCartProd(updatedCartProd);
+    } else {
+      setCartProd((prevCartProd) => [
         ...prevCartProd,
         {
           ...product,
-          quantity: quantity
-        }
-      ])
+          quantity: quantity,
+        },
+      ]);
     }
+  }
+
+  function handleDelete(productId) {
+    const newCartProd = cartProd.filter((product) => productId !== product.id);
+    setCartProd(newCartProd);
   }
 
   return (
     <Routes>
-      <Route path="/" element={<HomePage cartProd={cartProd}/>} />
-      <Route path="/face" element={<FacePage cartProd={cartProd}/>} />
+      <Route
+        path="/"
+        element={
+          <HomePage
+            cartProd={cartProd}
+            showCart={showCart}
+            toggleActive={toggleActive}
+            handleDelete={handleDelete}
+          />
+        }
+      />
+      <Route
+        path="/face"
+        element={
+          <FacePage
+            cartProd={cartProd}
+            showCart={showCart}
+            toggleActive={toggleActive}
+            handleDelete={handleDelete}
+          />
+        }
+      />
       {faceProducts.map((result) =>
         result.data.map((product) => (
           <Route
             key={product.id}
             path={`/face/${product.id}`}
-            element=
-            {
-            <ProductPage 
-            productId={product.id} 
-            category={"face"} 
-            incrementCount={incrementCount} 
-            decrementCount={decrementCount}
-            count={count}
-            cartProd={cartProd}
-            addToCart={() => addToCart(product, count)}
-            setCount={setCount}
-            />
-          }
+            element={
+              <ProductPage
+                productId={product.id}
+                category={"face"}
+                incrementCount={incrementCount}
+                decrementCount={decrementCount}
+                count={count}
+                cartProd={cartProd}
+                addToCart={() => addToCart(product, count)}
+                setCount={setCount}
+                showCart={showCart}
+                toggleActive={toggleActive}
+                handleDelete={handleDelete}
+              />
+            }
           />
         ))
       )}
-      <Route path="/eyes" element={<EyesPage />} />
+      <Route
+        path="/eyes"
+        element={
+          <EyesPage
+            cartProd={cartProd}
+            showCart={showCart}
+            toggleActive={toggleActive}
+            handleDelete={handleDelete}
+          />
+        }
+      />
       {eyesProducts.map((result) =>
         result.data.map((product) => (
           <Route
             key={product.id}
             path={`/eyes/${product.id}`}
             element={
-            <ProductPage 
-            productId={product.id} 
-            category={"eyes"}
-            incrementCount={incrementCount} 
-            decrementCount={decrementCount}
-            count={count} 
-            cartProd={cartProd}
-            addToCart={addToCart}
-            />}
+              <ProductPage
+                productId={product.id}
+                category={"eyes"}
+                incrementCount={incrementCount}
+                decrementCount={decrementCount}
+                count={count}
+                cartProd={cartProd}
+                addToCart={() => addToCart(product, count)}
+                showCart={showCart}
+                toggleActive={toggleActive}
+                handleDelete={handleDelete}
+              />
+            }
           />
         ))
       )}
-      <Route path="/lips" element={<LipsPage />} />
+      <Route
+        path="/lips"
+        element={
+          <LipsPage
+            cartProd={cartProd}
+            showCart={showCart}
+            toggleActive={toggleActive}
+            handleDelete={handleDelete}
+          />
+        }
+      />
       {lipsProducts.map((result) =>
         result.data.map((product) => (
           <Route
             key={product.id}
             path={`/lips/${product.id}`}
             element={
-            <ProductPage 
-            productId={product.id} 
-            category={"lips"} 
-            incrementCount={incrementCount} 
-            decrementCount={decrementCount}
-            count={count}
-            cartProd={cartProd}
-            addToCart={addToCart}
-            />}
+              <ProductPage
+                productId={product.id}
+                category={"lips"}
+                incrementCount={incrementCount}
+                decrementCount={decrementCount}
+                count={count}
+                cartProd={cartProd}
+                addToCart={() => addToCart(product, count)}
+                showCart={showCart}
+                toggleActive={toggleActive}
+                handleDelete={handleDelete}
+              />
+            }
           />
         ))
       )}
-      <Route path="/nails" element={<NailsPage />} />
+      <Route
+        path="/nails"
+        element={
+          <NailsPage
+            cartProd={cartProd}
+            showCart={showCart}
+            toggleActive={toggleActive}
+            handleDelete={handleDelete}
+          />
+        }
+      />
       {nailsProducts.map((result) =>
         result.data.map((product) => (
           <Route
             key={product.id}
             path={`/nails/${product.id}`}
             element={
-            <ProductPage 
-            productId={product.id} 
-            category={"nails"}
-            incrementCount={incrementCount} 
-            decrementCount={decrementCount}
-            count={count} 
-            cartProd={cartProd}
-            addToCart={addToCart}
-            />}
+              <ProductPage
+                productId={product.id}
+                category={"nails"}
+                incrementCount={incrementCount}
+                decrementCount={decrementCount}
+                count={count}
+                cartProd={cartProd}
+                addToCart={() => addToCart(product, count)}
+                showCart={showCart}
+                toggleActive={toggleActive}
+                handleDelete={handleDelete}
+              />
+            }
           />
         ))
       )}
-      <Route path="/lipstick" element={<LipstickPage />} />
+      <Route
+        path="/lipstick"
+        element={
+          <LipstickPage
+            cartProd={cartProd}
+            showCart={showCart}
+            toggleActive={toggleActive}
+            handleDelete={handleDelete}
+          />
+        }
+      />
       {lipstickProducts.map((product) => (
         <Route
           key={product.id}
           path={`/lipstick/${product.id}`}
           element={
-          <ProductPage 
-          productId={product.id} 
-          category={"lipstick"} 
-          incrementCount={incrementCount} 
-          decrementCount={decrementCount}
-          count={count}
-          cartProd={cartProd}
-          addToCart={addToCart}
-          />}
+            <ProductPage
+              productId={product.id}
+              category={"lipstick"}
+              incrementCount={incrementCount}
+              decrementCount={decrementCount}
+              count={count}
+              cartProd={cartProd}
+              addToCart={() => addToCart(product, count)}
+              showCart={showCart}
+              toggleActive={toggleActive}
+              handleDelete={handleDelete}
+            />
+          }
         />
       ))}
-      <Route path="/cart" element={<Cart cartProd={cartProd}/>} />
+      <Route path="/cart" element={<Cart cartProd={cartProd} handleDelete={handleDelete}/>} />
     </Routes>
   );
 }
