@@ -1,4 +1,4 @@
-import { Route, Routes } from "react-router-dom";
+import { Route, Routes, useLocation } from "react-router-dom";
 import HomePage from "./Pages/MainPage/HomePage";
 import EyesPage from "./Pages/EyesPage/Eyes";
 import FacePage from "./Pages/FacePage/Face";
@@ -8,7 +8,7 @@ import LipstickPage from "./Pages/LipstickPage/Lipstick";
 import ProductPage from "./Pages/ProductPage/ProductPage";
 import Cart from "./Pages/CartPage/Cart";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { fetchProducts, lipstickFetch } from "./fetch";
 
 export default function App() {
@@ -53,6 +53,7 @@ export default function App() {
   const [count, setCount] = useState(1);
   const [cartProd, setCartProd] = useState([]);
   const [showCart, setShowCart] = useState(false);
+  const [shade, setShade] = useState();
 
   function toggleActive() {
     setShowCart(!showCart);
@@ -60,41 +61,75 @@ export default function App() {
 
   function decrementCount() {
     if (count > 1) {
-      setCount((prevCount) => prevCount - 1);
+      setCount((prevCount) => {
+        const newCount = prevCount - 1;
+        return newCount;
+      });
+    }
+  }
+  
+  function incrementCount() {
+    if (count < 100) {
+      setCount((prevCount) => {
+        const newCount = prevCount + 1;
+        return newCount;
+      });
     }
   }
 
-  function incrementCount() {
-    if (count < 10) {
-      setCount((prevCount) => prevCount + 1);
-    }
-  }
+  const location = useLocation();
+
+  useEffect(() => {
+    // Hide the cart preview when navigating to a new page
+    setShowCart(false);
+  }, [location]);
 
   function addToCart(product, quantity) {
     toggleActive();
     const currentIndex = cartProd.findIndex((item) => item.id === product.id);
     if (currentIndex !== -1) {
-      const updatedCartProd = [...cartProd];
-      updatedCartProd[currentIndex] = {
-        ...updatedCartProd[currentIndex],
-        quantity: updatedCartProd[currentIndex].quantity + quantity,
-      };
-      setCartProd(updatedCartProd);
+
+      const existingProduct = cartProd[currentIndex];
+      if(existingProduct.color_prod === shade){
+        const updatedCartProd = [...cartProd];
+        updatedCartProd[currentIndex] = {
+          ...updatedCartProd[currentIndex],
+          quantity: updatedCartProd[currentIndex].quantity + quantity,
+          color_prod: shade
+        };
+        setCartProd(updatedCartProd);
+      }
+      else {
+           setCartProd((prevCartProd) => [
+        ...prevCartProd,
+        {
+          ...product,
+          quantity: quantity,
+          color_prod: shade,
+        },
+      ]);
+      }
     } else {
       setCartProd((prevCartProd) => [
         ...prevCartProd,
         {
           ...product,
           quantity: quantity,
+          color_prod: shade
         },
       ]);
     }
   }
 
-  function handleDelete(productId) {
-    const newCartProd = cartProd.filter((product) => productId !== product.id);
+  function handleDelete(productId, shade) {
+    const newCartProd = cartProd.filter((product) => productId !== product.id || product.color_prod !== shade);
     setCartProd(newCartProd);
   }
+
+  function handleShade(color){
+    setShade(color.colour_name);
+  }
+  
 
   return (
     <Routes>
@@ -106,6 +141,7 @@ export default function App() {
             showCart={showCart}
             toggleActive={toggleActive}
             handleDelete={handleDelete}
+            setCartProd={setCartProd}
           />
         }
       />
@@ -117,6 +153,7 @@ export default function App() {
             showCart={showCart}
             toggleActive={toggleActive}
             handleDelete={handleDelete}
+            setCartProd={setCartProd}
           />
         }
       />
@@ -134,10 +171,14 @@ export default function App() {
                 count={count}
                 cartProd={cartProd}
                 addToCart={() => addToCart(product, count)}
-                setCount={setCount}
                 showCart={showCart}
                 toggleActive={toggleActive}
                 handleDelete={handleDelete}
+                handleShade={handleShade}
+                shade={shade}
+                setCount={setCount}
+                setCartProd={setCartProd}
+                setShade={setShade}
               />
             }
           />
@@ -151,6 +192,7 @@ export default function App() {
             showCart={showCart}
             toggleActive={toggleActive}
             handleDelete={handleDelete}
+            setCartProd={setCartProd}
           />
         }
       />
@@ -161,16 +203,21 @@ export default function App() {
             path={`/eyes/${product.id}`}
             element={
               <ProductPage
-                productId={product.id}
-                category={"eyes"}
-                incrementCount={incrementCount}
-                decrementCount={decrementCount}
-                count={count}
-                cartProd={cartProd}
-                addToCart={() => addToCart(product, count)}
-                showCart={showCart}
-                toggleActive={toggleActive}
-                handleDelete={handleDelete}
+              productId={product.id}
+              category={"eyes"}
+              incrementCount={incrementCount}
+              decrementCount={decrementCount}
+              count={count}
+              cartProd={cartProd}
+              addToCart={() => addToCart(product, count)}
+              showCart={showCart}
+              toggleActive={toggleActive}
+              handleDelete={handleDelete}
+              handleShade={handleShade}
+              shade={shade}
+              setCount={setCount}
+              setCartProd={setCartProd}
+              setShade={setShade}
               />
             }
           />
@@ -184,6 +231,7 @@ export default function App() {
             showCart={showCart}
             toggleActive={toggleActive}
             handleDelete={handleDelete}
+            setCartProd={setCartProd}
           />
         }
       />
@@ -194,16 +242,21 @@ export default function App() {
             path={`/lips/${product.id}`}
             element={
               <ProductPage
-                productId={product.id}
-                category={"lips"}
-                incrementCount={incrementCount}
-                decrementCount={decrementCount}
-                count={count}
-                cartProd={cartProd}
-                addToCart={() => addToCart(product, count)}
-                showCart={showCart}
-                toggleActive={toggleActive}
-                handleDelete={handleDelete}
+              productId={product.id}
+              category={"lips"}
+              incrementCount={incrementCount}
+              decrementCount={decrementCount}
+              count={count}
+              cartProd={cartProd}
+              addToCart={() => addToCart(product, count)}
+              showCart={showCart}
+              toggleActive={toggleActive}
+              handleDelete={handleDelete}
+              handleShade={handleShade}
+              shade={shade}
+              setCount={setCount}
+              setCartProd={setCartProd}
+              setShade={setShade}
               />
             }
           />
@@ -217,6 +270,7 @@ export default function App() {
             showCart={showCart}
             toggleActive={toggleActive}
             handleDelete={handleDelete}
+            setCartProd={setCartProd}
           />
         }
       />
@@ -237,6 +291,11 @@ export default function App() {
                 showCart={showCart}
                 toggleActive={toggleActive}
                 handleDelete={handleDelete}
+                handleShade={handleShade}
+                shade={shade}
+                setCount={setCount}
+                setCartProd={setCartProd}
+                setShade={setShade}
               />
             }
           />
@@ -250,6 +309,7 @@ export default function App() {
             showCart={showCart}
             toggleActive={toggleActive}
             handleDelete={handleDelete}
+            setCartProd={setCartProd}
           />
         }
       />
@@ -259,21 +319,33 @@ export default function App() {
           path={`/lipstick/${product.id}`}
           element={
             <ProductPage
-              productId={product.id}
-              category={"lipstick"}
-              incrementCount={incrementCount}
-              decrementCount={decrementCount}
-              count={count}
-              cartProd={cartProd}
-              addToCart={() => addToCart(product, count)}
-              showCart={showCart}
-              toggleActive={toggleActive}
-              handleDelete={handleDelete}
+            productId={product.id}
+            category={"lipstick"}
+            incrementCount={incrementCount}
+            decrementCount={decrementCount}
+            count={count}
+            cartProd={cartProd}
+            addToCart={() => addToCart(product, count)}
+            showCart={showCart}
+            toggleActive={toggleActive}
+            handleDelete={handleDelete}
+            handleShade={handleShade}
+            shade={shade}
+            setCount={setCount}
+            setCartProd={setCartProd}
+            setShade={setShade}
             />
           }
         />
       ))}
-      <Route path="/cart" element={<Cart cartProd={cartProd} handleDelete={handleDelete}/>} />
+      <Route path="/cart" element={
+      <Cart 
+      cartProd={cartProd} 
+      showCart={showCart}
+      toggleActive={toggleActive}
+      handleDelete={handleDelete}
+      setCartProd={setCartProd}
+      />} />
     </Routes>
   );
 }

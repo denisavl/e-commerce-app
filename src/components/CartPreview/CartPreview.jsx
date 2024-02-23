@@ -4,7 +4,33 @@ import { Link } from 'react-router-dom';
 import infoIcon from '../../assets/infoIcon.svg'
 import closeBtn from '../../assets/closeBtn.png'
 
-export default function CartPreview({product, showCart, toggleActive, handleDelete }){
+export default function CartPreview({product, showCart, toggleActive, handleDelete, setCartProd}){
+
+  function incrementCount(productId, shade) {
+    const updatedCartProd = product.map(item => {
+      if (item.id === productId && item.color_prod === shade) {
+        if (item.quantity <100) {
+          return { ...item, quantity: item.quantity + 1 };
+        }
+      }
+      return item;
+    })
+    setCartProd(updatedCartProd);
+  }
+
+  function decrementCount(productId, shade) {
+    const updatedCartProd = product.map(item => {
+      if (item.id === productId && item.color_prod === shade) {
+        if (item.quantity > 1) {
+          return { ...item, quantity: item.quantity - 1 };
+        }
+      }
+      return item;
+    })
+    setCartProd(updatedCartProd);
+  }
+
+
     return (
         showCart && (
           <div className={styles.moduleContainer} onClick={toggleActive}>
@@ -36,17 +62,17 @@ export default function CartPreview({product, showCart, toggleActive, handleDele
                       <div className={styles.right}>
                         <div className={styles.headerCont}>
                           <div className={styles.name}>{item.name}</div>
-                          <img src={closeBtn} alt="Close Button" onClick={() => handleDelete(item.id)}/>
+                          <img src={closeBtn} alt="Close Button" onClick={() => handleDelete(item.id, item.color_prod)}/>
                         </div>
-                        <div className={styles.shade}>B16 - the shade of the product</div>
+                        <div className={styles.shade}>{item.color_prod && <span>{item.color_prod}</span>}</div>
                         <div className={styles.bottom}>
                           <div className={styles.quantity}>
-                            <button type="button" className={styles.minusQuantity}>-</button>
-                            <div className={styles.countQuantity}>1</div>
-                            <button type="button" className={styles.plusQuantity}>+</button>
+                            <button type="button" className={styles.minusQuantity} onClick={() => decrementCount(item.id,item.color_prod )}>-</button>
+                            <div className={styles.countQuantity}>{item.quantity}</div>
+                            <button type="button" className={styles.plusQuantity} onClick={() => incrementCount(item.id, item.color_prod)}>+</button>
                           </div>
                           <div className={styles.price}>
-                            ${((item.quantity * item.price) % 1 === 0) ? (item.quantity * item.price).toFixed(1) : (item.quantity * item.price)}
+                            ${item.price > 0 && item.price ? (item.quantity * item.price).toFixed(1) : (item.quantity * '15.0').toFixed(1)}
                           </div>
                         </div>
                       </div>

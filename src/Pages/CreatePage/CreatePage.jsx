@@ -20,7 +20,8 @@ export default function CreatePage({
   cartProd,
   showCart,
   toggleActive,
-  handleDelete
+  handleDelete,
+  setCartProd
 }) {
   const [activeFilter, setActiveFilter] = useState(null);
   const [checkedBrand, setCheckedBrand] = useState([]);
@@ -103,7 +104,9 @@ export default function CreatePage({
       cartProd={cartProd} 
       showCart={showCart} 
       toggleActive={toggleActive}
-      handleDelete={handleDelete}/>
+      handleDelete={handleDelete}
+      setCartProd={setCartProd}
+      />
       <div className={styles.pageContainer}>
         <h1 className={styles.titlePage}>
           {title} products {`(${products.length})`}

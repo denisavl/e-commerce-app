@@ -6,7 +6,13 @@ import { useState, useEffect } from "react";
 import { price2 } from "../Data";
 import { ApplyFilters } from "../../ApplyFilters";
 
-export default function NailsPage({cartProd, showCart, toggleActive, handleDelete}) {
+export default function NailsPage({
+  cartProd,
+  showCart,
+  toggleActive,
+  handleDelete,
+  setCartProd
+}) {
   const nailsProductTypes = ["nail_polish"];
   const [allProducts, setAllProducts] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState({
@@ -17,16 +23,16 @@ export default function NailsPage({cartProd, showCart, toggleActive, handleDelet
     property: [],
   });
   const [filteredProducts, setFilteredProducts] = useState([]);
-  const [sortedProducts, setSortedProducts] = useState('popularity');
+  const [sortedProducts, setSortedProducts] = useState("popularity");
 
   const nailsProducts = useQuery({
     queryKey: ["face"],
     queryFn: () => fetchProducts(nailsProductTypes),
   });
 
-  const brands = [...new Set(allProducts.map((product) => product.brand))].filter(
-    (brand) => brand !== null
-  );
+  const brands = [
+    ...new Set(allProducts.map((product) => product.brand)),
+  ].filter((brand) => brand !== null);
   const properties = [
     ...new Set(allProducts.flatMap((product) => product.tag_list)),
   ];
@@ -35,8 +41,8 @@ export default function NailsPage({cartProd, showCart, toggleActive, handleDelet
   const setDefaultOrder = (product) => {
     const defaultSortedProducts = [...product].sort((a, b) => b.id - a.id);
     setFilteredProducts(defaultSortedProducts);
-    setAllProducts(defaultSortedProducts)
-  }
+    setAllProducts(defaultSortedProducts);
+  };
 
   useEffect(() => {
     if (nailsProducts.isSuccess) {
@@ -49,16 +55,16 @@ export default function NailsPage({cartProd, showCart, toggleActive, handleDelet
       setAllProducts(products);
       setFilteredProducts(products);
       setDefaultOrder(products);
-  }}, [nailsProducts.data, nailsProducts.isSuccess])
+    }
+  }, [nailsProducts.data, nailsProducts.isSuccess]);
 
   const showFilteredResults = (filters) => {
-    const filteredResults = ApplyFilters(allProducts, filters, price2)
+    const filteredResults = ApplyFilters(allProducts, filters, price2);
     setFilteredProducts(filteredResults);
   };
- 
-  function handleFilter(filters, category)
-  {
-    let newFilter = {...selectedFilter};
+
+  function handleFilter(filters, category) {
+    let newFilter = { ...selectedFilter };
     newFilter[category] = filters;
 
     showFilteredResults(newFilter);
@@ -70,18 +76,31 @@ export default function NailsPage({cartProd, showCart, toggleActive, handleDelet
       products={filteredProducts}
       brands={brands}
       classifications={["nail polish"]}
-      colors={["rouge","cosmopolite","wonderland","pink","front row","massaï","lucky","bonheur","trianon","grège",]}
+      colors={[
+        "rouge",
+        "cosmopolite",
+        "wonderland",
+        "pink",
+        "front row",
+        "massaï",
+        "lucky",
+        "bonheur",
+        "trianon",
+        "grège",
+      ]}
       properties={properties}
       prices={priceIntervals}
       handleFilter={(filters, category) => handleFilter(filters, category)}
       sortedProducts={sortedProducts}
       setSortedProducts={setSortedProducts}
       setDefaultOrder={setDefaultOrder}
-      category={'nails'}
+      category={"nails"}
       cartProd={cartProd}
       showCart={showCart}
       toggleActive={toggleActive}
       handleDelete={handleDelete}
+      setCartProd={setCartProd}
+
     />
   );
 }

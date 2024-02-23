@@ -5,7 +5,7 @@ import basketIcon from "../../assets/shopping-cart.png";
 import CartPreview from "../CartPreview/CartPreview";
 import { Link } from "react-router-dom";
 
-const Header = ({cartProd, showCart, toggleActive, handleDelete}) => {
+const Header = ({cartProd, showCart, toggleActive, handleDelete, setCartProd}) => {
   const totalQuantity = cartProd.reduce((total, item) => total + item.quantity, 0);
   return (
     <div className={styles.headerContainer}>
@@ -65,7 +65,9 @@ const Header = ({cartProd, showCart, toggleActive, handleDelete}) => {
       product={cartProd} 
       showCart={showCart} 
       toggleActive={toggleActive}
-      handleDelete={handleDelete}/>}
+      handleDelete={handleDelete}
+      setCartProd={setCartProd}
+      />}
     </div>
   );
 };

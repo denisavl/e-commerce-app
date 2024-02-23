@@ -6,7 +6,12 @@ import { useState, useEffect } from "react";
 import { price1 } from "../Data";
 import { ApplyFilters } from "../../ApplyFilters";
 
-export default function EyesPage({cartProd, showCart, toggleActive, handleDelete}) {
+export default function EyesPage({  
+  cartProd,
+  showCart,
+  toggleActive,
+  handleDelete,
+setCartProd}) {
   const eyesProductsTypes = ["eyebrow", "eyeliner", "eyeshadow", "mascara"];
 
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -84,6 +89,7 @@ export default function EyesPage({cartProd, showCart, toggleActive, handleDelete
       showCart={showCart}
       toggleActive={toggleActive}
       handleDelete={handleDelete}
+      setCartProd={setCartProd}
     />
   );
 }

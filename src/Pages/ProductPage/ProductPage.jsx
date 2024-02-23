@@ -7,31 +7,47 @@ import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
 
 export default function ProductPage({
-  productId, 
-  category, 
+  productId,
+  category,
   cartProd,
-   decrementCount, 
-   incrementCount,
-    addToCart, 
-    count, 
-    setCount,
+  decrementCount,
+  incrementCount,
+  count,
+  addToCart,
   showCart,
-toggleActive,
-handleDelete}) {
+  toggleActive,
+  handleDelete,
+  handleShade,
+  shade,
+  setCount,
+  setCartProd,
+  setShade
+}) {
   const [displayProduct, setDisplayProduct] = useState(null);
   const product = useQuery({
     queryKey: ["products"],
-    queryFn: () => fetchProducts(['eyebrow', 'eyeliner', 'eyeshadow', 'mascara', 'foundation', 'blush', 'bronzer', 'lip_liner', 'lipstick', 'nail_polish']),
+    queryFn: () =>
+      fetchProducts([
+        "eyebrow",
+        "eyeliner",
+        "eyeshadow",
+        "mascara",
+        "foundation",
+        "blush",
+        "bronzer",
+        "lip_liner",
+        "lipstick",
+        "nail_polish",
+      ]),
   });
   useEffect(() => {
     if (product.isSuccess) {
       const foundProduct = product.data?.successfulResults
         .flatMap((result) => result.data)
         .find((p) => p.id === productId);
-  
+
       setDisplayProduct(foundProduct);
     }
-   
   }, [product.data, product.isSuccess, productId]);
 
   function capitalizeFirstLetter(str) {
@@ -39,18 +55,27 @@ handleDelete}) {
   }
 
   useEffect(() => {
+    if (displayProduct) {
+      if (displayProduct.product_colors && displayProduct.product_colors.length > 0) {
+        setShade(displayProduct.product_colors[0].colour_name);
+      }
+    }
+  }, [displayProduct, setShade]);
+
+  useEffect(() => {
     return () => {
       setCount(1);
     };
-  }, [setCount]);
+  }, [productId, setCount]);
 
   return (
     <div>
-      <Header 
-      cartProd={cartProd} 
-      showCart={showCart} 
-      toggleActive={toggleActive}
-      handleDelete={handleDelete}
+      <Header
+        cartProd={cartProd}
+        showCart={showCart}
+        toggleActive={toggleActive}
+        handleDelete={handleDelete}
+        setCartProd={setCartProd}
       />
       <div className={styles.pageContent}>
         <nav className={styles.navBar}>
@@ -94,9 +119,9 @@ handleDelete}) {
                 <div className={styles.shadeWrapper}>
                   <div className={styles.shades}>
                     {displayProduct.product_colors.map((color, index) => (
-                      <div
+                      <div className={`${styles.colors} ${shade === color.colour_name ? styles.selected : ''}`} onClick={() =>
+                        handleShade(color)}
                         key={index}
-                        className={styles.colors}
                         style={{ backgroundColor: color.hex_value }}
                       ></div>
                     ))}
@@ -108,18 +133,33 @@ handleDelete}) {
                 <span className={styles.availableStatus}>Available Online</span>
               </div>
               <div className={styles.pricesAddToCart}>
-                <button type="submit" className={styles.addBtn} onClick={() => addToCart(count)}>
+                <button
+                  type="submit"
+                  className={styles.addBtn}
+                  onClick={() => addToCart()}
+                >
                   <span className={styles.addTitleBtn}>ADD</span>
                   <span className={styles.price}>
-                    {displayProduct.price ? displayProduct.price : "15.0"}$
+                  $
+                {displayProduct.price && displayProduct.price > 0
+                  ? `${displayProduct.price}`
+                  : `${(displayProduct.price = "15.0")}`}
                   </span>
                 </button>
                 <div className={styles.quantity}>
-                  <button type="button" className={styles.minusQuantity} onClick={decrementCount}>
+                  <button
+                    type="button"
+                    className={styles.minusQuantity}
+                    onClick={decrementCount}
+                  >
                     -
                   </button>
                   <div className={styles.countQuantity}>{count}</div>
-                  <button type="button" className={styles.plusQuantity} onClick={incrementCount}>
+                  <button
+                    type="button"
+                    className={styles.plusQuantity}
+                    onClick={incrementCount}
+                  >
                     +
                   </button>
                 </div>

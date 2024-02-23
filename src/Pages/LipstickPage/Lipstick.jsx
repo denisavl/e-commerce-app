@@ -6,7 +6,14 @@ import { useEffect, useState } from "react";
 import { price1 } from "../Data";
 import { ApplyFilters } from "../../ApplyFilters";
 
-export default function LipstickPage({cartProd, showCart, toggleActive, handleDelete}){
+export default function LipstickPage(
+  {  
+  cartProd,
+  showCart,
+  toggleActive,
+  handleDelete,
+  setCartProd}
+  ){
 
     const [allProducts, setAllProducts] = useState([]);
     const [selectedFilter, setSelectedFilter] = useState({
@@ -72,6 +79,7 @@ export default function LipstickPage({cartProd, showCart, toggleActive, handleDe
         showCart={showCart}
       toggleActive={toggleActive}
       handleDelete={handleDelete}
+      setCartProd={setCartProd}
         />
     )
 }
