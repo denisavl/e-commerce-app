@@ -96,7 +96,7 @@ export default function Cart({cartProd, handleDelete, showCart, toggleActive, se
                   <span>  ${((product.quantity * product.price) % 1 === 0) ? (product.quantity * product.price).toFixed(1) : (product.quantity * product.price)}</span>
                 </div>
                 <div className={styles.delete}>
-                  <button type="button" onClick={() => handleDelete(product.id)}>X</button>
+                  <button type="button" onClick={() => handleDelete(product.id, product.color_prod)}>X</button>
                 </div>
               </div>
             ))}

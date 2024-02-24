@@ -1,11 +1,13 @@
 import { Route, Routes, useLocation } from "react-router-dom";
-import HomePage from "./Pages/MainPage/HomePage";
+import HomePage from "./Pages/HomePage/HomePage";
 import EyesPage from "./Pages/EyesPage/Eyes";
 import FacePage from "./Pages/FacePage/Face";
 import LipsPage from "./Pages/LipsPage/Lips";
 import NailsPage from "./Pages/NailsPage/Nails";
 import LipstickPage from "./Pages/LipstickPage/Lipstick";
 import ProductPage from "./Pages/ProductPage/ProductPage";
+import AboutUs from "./Pages/AboutUsPage/AboutUs";
+import ShopAll from "./Pages/ShopAll/ShopAll";
 import Cart from "./Pages/CartPage/Cart";
 import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
@@ -346,6 +348,14 @@ export default function App() {
       handleDelete={handleDelete}
       setCartProd={setCartProd}
       />} />
+      <Route path="/about" element={
+        <AboutUs 
+        cartProd={cartProd} 
+        showCart={showCart} 
+        toggleActive={toggleActive}
+        handleDelete={handleDelete}
+        setCartProd={setCartProd}/>
+      }/>
     </Routes>
   );
 }

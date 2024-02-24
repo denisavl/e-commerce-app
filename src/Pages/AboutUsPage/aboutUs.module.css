@@ -1,0 +1,47 @@
+.content{
+    width: 85%;
+    display: block;
+    margin: 0 auto;
+}
+
+.poster {
+    background: url('../../assets/aboutUs.jpg') no-repeat center;
+    height: 400px;
+    background-size: cover;
+}
+
+.slogan{
+    padding-bottom: 50px;
+    font-size: 30px;
+    text-align: center;
+    font-weight: bold;
+}
+
+.aboutTitle{
+    font-size: 30px;
+    text-align: center;
+    padding-bottom: 30px;
+    padding-top: 50px;
+}
+
+.shopCart{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 90%;
+    padding: 30px;
+    gap: 30px;
+}
+
+.shopImg{
+    width: 100%;
+}
+
+.shopTitle{
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.details{
+    padding-top: 10px;
+    line-height: 1.5;
+}
