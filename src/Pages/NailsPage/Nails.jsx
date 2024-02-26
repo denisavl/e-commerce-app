@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import { price2 } from "../Data";
 import { ApplyFilters } from "../../ApplyFilters";
+import Loading from "../LoadingPage/Loading";
 
 export default function NailsPage({
   cartProd,
@@ -57,6 +58,8 @@ export default function NailsPage({
       setDefaultOrder(products);
     }
   }, [nailsProducts.data, nailsProducts.isSuccess]);
+
+  if (nailsProducts.isLoading) return <Loading />;
 
   const showFilteredResults = (filters) => {
     const filteredResults = ApplyFilters(allProducts, filters, price2);

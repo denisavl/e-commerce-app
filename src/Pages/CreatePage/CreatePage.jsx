@@ -3,6 +3,7 @@ import styles from "../CreatePage/createPage.module.css";
 import Header from "../../components/Header/Header";
 import { useState, useEffect } from "react";
 import { Link } from "react-router-dom";
+// import Loading from "../LoadingPage/Loading";
 
 export default function CreatePage({
   title,
@@ -96,7 +97,6 @@ export default function CreatePage({
       window.removeEventListener("click", handleDocumentClick);
     };
   }, []);
-
 
   return (
     <div>

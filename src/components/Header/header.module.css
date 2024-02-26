@@ -49,36 +49,6 @@ body, html {
     width: 35px;
 }
 
-.formContainer {
-    position: relative;
-    display: flex;
-    align-items: center;
-    border: none;
-    padding: 0;
-}
-
-.searchBar {
-    border: none;
-    border-bottom: 1px solid black;
-    width: 110px;
-    padding: 6px 25px;
-}
-
-.searchBar:focus {
-    outline: none;
-}
-
-.searchIcon {
-    position: relative;
-    left: 15px;
-    width: 25px;
-}
-
-.searchBar::placeholder {
-    color: #999;
-    font-size: 16px;
-}
-
 .cart{
     position: relative;
 }

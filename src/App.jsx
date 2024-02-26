@@ -33,6 +33,15 @@ export default function App() {
             return fetchProducts(["lip_liner", "lipstick"]);
           case "nails":
             return fetchProducts(["nail_polish"]);
+          case 'shop':
+          return fetchProducts(["eyebrow",
+          "eyeliner",
+          "eyeshadow",
+          "mascara",
+          "foundation", "blush", "bronzer",
+          "lip_liner", "lipstick",
+          "nail_polish"
+        ])
           default:
             return Promise.reject(new Error("Invalid category"));
         }
@@ -51,6 +60,7 @@ export default function App() {
   const lipstickProducts = lipstickProduct.data || [];
   const lipsProducts = useCategoryProducts("lips");
   const nailsProducts = useCategoryProducts("nails");
+  const shopAll = useCategoryProducts('shop');
 
   const [count, setCount] = useState(1);
   const [cartProd, setCartProd] = useState([]);
@@ -364,6 +374,34 @@ export default function App() {
         handleDelete={handleDelete}
         setCartProd={setCartProd}/>
       }/>
+
+    {shopAll.map((result) =>
+        result.data.map((product) => (
+          <Route
+            key={product.id}
+            path={`/shop/${product.id}`}
+            element={
+              <ProductPage
+                productId={product.id}
+                category={"shop"}
+                incrementCount={incrementCount}
+                decrementCount={decrementCount}
+                count={count}
+                cartProd={cartProd}
+                addToCart={() => addToCart(product, count)}
+                showCart={showCart}
+                toggleActive={toggleActive}
+                handleDelete={handleDelete}
+                handleShade={handleShade}
+                shade={shade}
+                setCount={setCount}
+                setCartProd={setCartProd}
+                setShade={setShade}
+              />
+            }
+          />
+        ))
+      )}
     </Routes>
   );
 }

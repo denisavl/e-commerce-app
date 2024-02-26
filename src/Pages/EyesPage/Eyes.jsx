@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
 import { price1 } from "../Data";
 import { ApplyFilters } from "../../ApplyFilters";
+import Loading from "../LoadingPage/Loading";
 
 export default function EyesPage({  
   cartProd,
@@ -29,6 +30,7 @@ setCartProd}) {
     queryKey: ["eyes"],
     queryFn: () => fetchProducts(eyesProductsTypes),
   });
+
 
   const brands = [
     ...new Set(allProducts.map((product) => product.brand)),
@@ -56,6 +58,8 @@ setCartProd}) {
       setDefaultOrder(products);
     }
   }, [eyesProducts.data, eyesProducts.isSuccess]);
+
+  if (eyesProducts.isLoading) return <Loading />;
 
   const showFilteredResults = (filters) => {
     const filteredResults = ApplyFilters(allProducts, filters, price1)

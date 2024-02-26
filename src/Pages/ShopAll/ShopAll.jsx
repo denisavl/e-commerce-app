@@ -6,6 +6,7 @@ import { allPrices } from "../Data";
 import { fetchAll } from "../../fetch";
 import { useQuery } from "@tanstack/react-query";
 import { useEffect } from "react";
+import Loading from "../LoadingPage/Loading";
 export default function ShopAll({
   cartProd,
   showCart,
@@ -38,6 +39,8 @@ export default function ShopAll({
       }
     }
   ,[makeup.data, makeup.isSuccess]);
+
+  if (makeup.isLoading) return <Loading />;
 
   const brands = [
     ...new Set(allProducts.map((product) => product.brand)),

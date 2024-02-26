@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { price1 } from "../Data";
 import { useState, useEffect } from 'react';
 import { ApplyFilters } from "../../ApplyFilters";
+import Loading from '../LoadingPage/Loading';
 
 export default function FacePage({  
   cartProd,
@@ -51,7 +52,7 @@ setCartProd}){
         setDefaultOrder(products);
     }}, [faceProducts.data, faceProducts.isSuccess])
 
-    // console.log(filteredProducts);
+    if (faceProducts.isLoading) return <Loading />;
 
     const showFilteredResults = (filters) => {
       const filteredResults = ApplyFilters(allProducts, filters, price1)

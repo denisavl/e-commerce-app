@@ -15,7 +15,7 @@ export const ApplyFilters = (products, filters, priceIntervals) => {
       if (filters.color.length > 0) {
         filteredResults = filteredResults.filter((product) => {
           const productColors = product.product_colors.map((color) =>
-            color.colour_name.toLowerCase()
+          color.colour_name ? color.colour_name.toLowerCase() : ""
           );
           const matches = filters.color.some((selectedColor) =>
             productColors.some((productColor) =>

@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from 'react';
 import { price1 } from '../Data';
 import {ApplyFilters} from '../../ApplyFilters'
+import Loading from '../LoadingPage/Loading';
 
 export default function LipsPage({  
   cartProd,
@@ -52,6 +53,8 @@ export default function LipsPage({
         setFilteredProducts(products);
         setDefaultOrder(products);
     }}, [lipsProducts.data, lipsProducts.isSuccess])
+
+    if (lipsProducts.isLoading) return <Loading />;
 
     const showFilteredResults = (filters) => {
       const filteredResults = ApplyFilters(allProducts, filters, price1)

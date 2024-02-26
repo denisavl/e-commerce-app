@@ -5,6 +5,7 @@ import { Link } from "react-router-dom";
 import { fetchProducts } from "../../fetch";
 import { useEffect, useState } from "react";
 import { useQuery } from "@tanstack/react-query";
+import Loading from "../LoadingPage/Loading";
 
 export default function ProductPage({
   productId,
@@ -67,6 +68,9 @@ export default function ProductPage({
       setCount(1);
     };
   }, [productId, setCount]);
+
+  if (product.isLoading) return <Loading />;
+
 
   return (
     <div>

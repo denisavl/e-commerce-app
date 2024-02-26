@@ -5,6 +5,7 @@ import { useQuery } from "@tanstack/react-query";
 import { useEffect, useState } from "react";
 import { price1 } from "../Data";
 import { ApplyFilters } from "../../ApplyFilters";
+import Loading from "../LoadingPage/Loading";
 
 export default function LipstickPage(
   {  
@@ -47,6 +48,8 @@ export default function LipstickPage(
           setDefaultOrder(products);
       }, [lipstickProducts.data])
   
+      if (lipstickProducts.isLoading) return <Loading />;
+
       const showFilteredResults = (filters) => {
         const filteredResults = ApplyFilters(allProducts, filters, price1)
         setFilteredProducts(filteredResults);

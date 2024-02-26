@@ -8,6 +8,8 @@ import Footer from "../../components/Footer/Footer";
 import { useQuery } from "@tanstack/react-query";
 import { useState } from "react";
 import styles from "./homePage.module.css";
+import Loading from "../LoadingPage/Loading";
+import { Link } from "react-router-dom";
 
 export default function HomePage({cartProd, showCart, toggleActive, handleDelete, setCartProd}) {
   const makeup = useQuery({
@@ -22,8 +24,8 @@ export default function HomePage({cartProd, showCart, toggleActive, handleDelete
   const endIndex = startIndex + 4;
   const productsToShow = [...limitedData.slice(startIndex, endIndex)];
 
-  // if (makeup.isLoading) return <h1>Loading....</h1>;
-  // if (makeup.isError) return <h1>Error loading data!!!</h1>;
+  if (makeup.isLoading) return <Loading />;
+  if (makeup.isError) return <h1>Error loading data!!!</h1>;
 
   const navigateToPage = (pageNumber) => {
     if (pageNumber >= totalPages) {
@@ -60,7 +62,10 @@ export default function HomePage({cartProd, showCart, toggleActive, handleDelete
           <div
             className={styles.containerBestSeller}>
             {productsToShow.map((item) => (
-              <CardBestSeller key={item.id} product={item} />
+              <Link to={`face/${item.id}`} key={item.id}>
+                <CardBestSeller product={item} />
+              </Link>
+              
             ))}
           </div>
           <div className={styles.previous} onClick={handlePreviousPage}>
