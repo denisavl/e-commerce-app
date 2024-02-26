@@ -1,6 +1,14 @@
 // import { useQuery } from '@tanstack/react-query';
 import axios from "axios";
 
+async function fetchAll() {
+  const response = await axios.get(
+    "https://makeup-api.herokuapp.com/api/v1/products.json"
+  );
+  const data = await response.data;
+  return data;
+}
+
 async function fetchCarousel() {
   const response = await axios.get(
     "https://makeup-api.herokuapp.com/api/v1/products.json?product_category=cream&product_type=foundation"
@@ -43,4 +51,4 @@ results.forEach((result, index) => {
 return {successfulResults, errorResults };
 };
 
-export {fetchCarousel, fetchProducts, lipstickFetch}
+export {fetchCarousel, fetchProducts, lipstickFetch, fetchAll}

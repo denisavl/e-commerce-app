@@ -356,6 +356,14 @@ export default function App() {
         handleDelete={handleDelete}
         setCartProd={setCartProd}/>
       }/>
+        <Route path="/shop" element={
+        <ShopAll 
+        cartProd={cartProd} 
+        showCart={showCart} 
+        toggleActive={toggleActive}
+        handleDelete={handleDelete}
+        setCartProd={setCartProd}/>
+      }/>
     </Routes>
   );
 }
