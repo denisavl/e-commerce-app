@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 // import { fetchCarousel } from "../../fetch";
 // import { useQuery } from "@tanstack/react-query";
 
-export default function Cart({cartProd, handleDelete, showCart, toggleActive, setCartProd}) {
+export default function Cart({cartProd, handleDelete, showCart, toggleActive, setCartProd, setResults, setIsLoading}) {
   const totalPrice = cartProd.reduce((total, item) => total + (item.quantity*item.price), 0);
   const priceWithoutVAT = totalPrice / 1.19;
 
@@ -41,7 +41,9 @@ export default function Cart({cartProd, handleDelete, showCart, toggleActive, se
       showCart={showCart} 
       toggleActive={toggleActive}
       handleDelete={handleDelete}
-      setCartProd={setCartProd}/>
+      setCartProd={setCartProd}
+      setResults={setResults}
+      setIsLoading={setIsLoading}/>
       {cartProd.length == 0 && (
         <div className={styles.emptyCartContainer}>
           <h1 className={styles.emptyCartTitle}>Shopping cart is empty</h1>

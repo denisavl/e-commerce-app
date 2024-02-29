@@ -25,6 +25,7 @@ async function lipstickFetch() {
   return data;
 }
 
+
 const fetchProducts = async (productTypes) => {
   const requests = productTypes.map((type) =>
   axios.get(`https://makeup-api.herokuapp.com/api/v1/products.json?product_type=${type}`)

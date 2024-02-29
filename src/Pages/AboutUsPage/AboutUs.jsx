@@ -10,6 +10,8 @@ export default function AboutUs({
   toggleActive,
   handleDelete,
   setCartProd,
+  setResults,
+  setIsLoading
 }) {
   return (
     <div>
@@ -19,6 +21,8 @@ export default function AboutUs({
         toggleActive={toggleActive}
         handleDelete={handleDelete}
         setCartProd={setCartProd}
+        setResults={setResults}
+        setIsLoading={setIsLoading}
       />
       <div className={styles.content}>
         <div className={styles.aboutTitle}>#AboutGlam</div>

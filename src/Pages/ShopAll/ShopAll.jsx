@@ -13,6 +13,8 @@ export default function ShopAll({
   toggleActive,
   handleDelete,
   setCartProd,
+  setResults,
+  setIsLoading
 }) {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
@@ -72,7 +74,7 @@ export default function ShopAll({
   return (
     <div>
       <CreatePage
-        title={"Make up"}
+        title={"Make up products"}
         products={filteredProducts}
         brands={brands}
         classifications={["eyebrow",
@@ -114,6 +116,8 @@ export default function ShopAll({
         toggleActive={toggleActive}
         handleDelete={handleDelete}
         setCartProd={setCartProd}
+        setResults={setResults}
+        setIsLoading={setIsLoading}
       />
     </div>
   );

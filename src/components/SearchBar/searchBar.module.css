@@ -4,6 +4,7 @@
     align-items: center;
     border: none;
     padding: 0;
+    position: relative;
 }
 
 .searchBar {
@@ -26,4 +27,12 @@
 .searchBar::placeholder {
     color: #999;
     font-size: 16px;
+}
+
+.dropDown{
+    position: absolute;
+    min-width: 160px;
+    padding: 12px 16px;
+    z-index: 1;
+    background-color: white;
 }

@@ -2,7 +2,7 @@
 import Header from "../../components/Header/Header";
 import Poster from "../../components/Poster/PosterHome";
 import CardBestSeller from "../../components/CardBestSeller/BestSellerCard";
-import {fetchCarousel} from "../../fetch";
+import { fetchCarousel } from "../../fetch";
 import Brands from "../../components/Brands/Brands";
 import Footer from "../../components/Footer/Footer";
 import { useQuery } from "@tanstack/react-query";
@@ -11,7 +11,15 @@ import styles from "./homePage.module.css";
 import Loading from "../LoadingPage/Loading";
 import { Link } from "react-router-dom";
 
-export default function HomePage({cartProd, showCart, toggleActive, handleDelete, setCartProd}) {
+export default function HomePage({
+  cartProd,
+  showCart,
+  toggleActive,
+  handleDelete,
+  setCartProd,
+  setResults,
+  setIsLoading,
+}) {
   const makeup = useQuery({
     queryKey: ["makeup"],
     queryFn: () => fetchCarousel(),
@@ -48,24 +56,25 @@ export default function HomePage({cartProd, showCart, toggleActive, handleDelete
 
   return (
     <>
-      <Header 
-      cartProd={cartProd} 
-      showCart={showCart}
-      toggleActive={toggleActive}
-      handleDelete={handleDelete}
-      setCartProd={setCartProd}/>
+      <Header
+        cartProd={cartProd}
+        showCart={showCart}
+        toggleActive={toggleActive}
+        handleDelete={handleDelete}
+        setCartProd={setCartProd}
+        setResults={setResults}
+        setIsLoading={setIsLoading}
+      />
       <Poster />
       <Brands />
       <h1 className={styles.headerSeller}>Best Seller</h1>
       <div className={styles.carouselContainer}>
         <div className={styles.container}>
-          <div
-            className={styles.containerBestSeller}>
+          <div className={styles.containerBestSeller}>
             {productsToShow.map((item) => (
               <Link to={`face/${item.id}`} key={item.id}>
                 <CardBestSeller product={item} />
               </Link>
-              
             ))}
           </div>
           <div className={styles.previous} onClick={handlePreviousPage}>

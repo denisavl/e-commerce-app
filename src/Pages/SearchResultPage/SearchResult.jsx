@@ -1,23 +1,19 @@
 /* eslint-disable react/prop-types */
 import CreatePage from "../CreatePage/CreatePage";
-import { fetchProducts } from "../../fetch";
-import { useQuery } from "@tanstack/react-query";
-import { price1 } from "../Data";
-import { useState, useEffect } from "react";
+import { useEffect, useState } from "react";
+import { allPrices } from "../Data";
 import { ApplyFilters } from "../../ApplyFilters";
-import Loading from "../LoadingPage/Loading";
 
-export default function FacePage({
+export default function SearchResult({
   cartProd,
   showCart,
   toggleActive,
   handleDelete,
   setCartProd,
   setResults,
-  setIsLoading,
+  results,
+  setIsLoading
 }) {
-  const faceProductTypes = ["foundation", "blush", "bronzer"];
-  const [allProducts, setAllProducts] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState({
     brand: [],
     classification: [],
@@ -28,42 +24,26 @@ export default function FacePage({
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [sortedProducts, setSortedProducts] = useState("popularity");
 
-  const faceProducts = useQuery({
-    queryKey: ["face"],
-    queryFn: () => fetchProducts(faceProductTypes),
-  });
-
   const brands = [
-    ...new Set(allProducts.map((product) => product.brand)),
+    ...new Set(results.map((product) => product.brand)),
   ].filter((brand) => brand !== null);
   const properties = [
-    ...new Set(allProducts.flatMap((product) => product.tag_list)),
+    ...new Set(results.flatMap((product) => product.tag_list)),
   ];
 
   const setDefaultOrder = (product) => {
     const defaultSortedProducts = [...product].sort((a, b) => b.id - a.id);
     setFilteredProducts(defaultSortedProducts);
-    setAllProducts(defaultSortedProducts);
   };
 
   useEffect(() => {
-    if (faceProducts.isSuccess) {
-      const products = faceProducts.data.successfulResults.flatMap((result) =>
-        result.data.map((product) => ({
-          ...product,
-          product_type: result.productType,
-        }))
-      );
-      setAllProducts(products);
-      setFilteredProducts(products);
-      setDefaultOrder(products);
+    if (results) {
+      setFilteredProducts(results);
+      setDefaultOrder(results);
     }
-  }, [faceProducts.data, faceProducts.isSuccess]);
-
-  if (faceProducts.isLoading) return <Loading />;
-
+  }, [results]);
   const showFilteredResults = (filters) => {
-    const filteredResults = ApplyFilters(allProducts, filters, price1);
+    const filteredResults = ApplyFilters(results, filters, allPrices);
     setFilteredProducts(filteredResults);
   };
 
@@ -75,12 +55,24 @@ export default function FacePage({
     setSelectedFilter(newFilter);
   }
 
+
   return (
     <CreatePage
-      title={"Face products"}
+      title={`Search results for: `}
       products={filteredProducts}
       brands={brands}
-      classifications={faceProductTypes}
+      classifications={[
+        "eyebrow",
+        "eyeliner",
+        "eyeshadow",
+        "mascara",
+        "foundation",
+        "blush",
+        "bronzer",
+        "lip liner",
+        "lipstick",
+        "nail polish",
+      ]}
       colors={[
         "white",
         "red",
@@ -92,15 +84,27 @@ export default function FacePage({
         "pink",
         "fair",
         "medium",
-        "light",
+        "light blue",
+        "brown",
+        "gray",
+        "orange",
+        "teal",
       ]}
       properties={properties}
-      prices={["< 15", "15 - 29.99", "30 - 44.99", "45 - 59.99", "> 60"]}
-      handleFilter={(filter, category) => handleFilter(filter, category)}
+      prices={[
+        "< 5",
+        "5 - 9.99",
+        "10 - 14.99",
+        "15 - 29.99",
+        "30 - 44.99",
+        "45 - 59.99",
+        "> 60",
+      ]}
+      handleFilter={(filters, category) => handleFilter(filters, category)}
       sortedProducts={sortedProducts}
       setSortedProducts={setSortedProducts}
       setDefaultOrder={setDefaultOrder}
-      category={"face"}
+      category={"search"}
       cartProd={cartProd}
       showCart={showCart}
       toggleActive={toggleActive}

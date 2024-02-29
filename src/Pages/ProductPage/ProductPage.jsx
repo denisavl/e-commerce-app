@@ -22,7 +22,9 @@ export default function ProductPage({
   shade,
   setCount,
   setCartProd,
-  setShade
+  setShade,
+  setResults,
+  setIsLoading
 }) {
   const [displayProduct, setDisplayProduct] = useState(null);
   const product = useQuery({
@@ -80,6 +82,8 @@ export default function ProductPage({
         toggleActive={toggleActive}
         handleDelete={handleDelete}
         setCartProd={setCartProd}
+        setResults={setResults}
+        setIsLoading={setIsLoading}
       />
       <div className={styles.pageContent}>
         <nav className={styles.navBar}>

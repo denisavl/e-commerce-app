@@ -1,8 +1,66 @@
+/* eslint-disable react/prop-types */
 import styles from "../SearchBar/searchBar.module.css";
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
 
-export default function SearchBar() {
+export default function SearchBar({ setResults, setIsLoading, }) {
+  const [searchItem, setSearchItem] = useState("");
+  const [data, setData] = useState();
 
-    
+  const navigate = useNavigate();
+
+  const debounce = (func, delay) => {
+    let timeoutId;
+    return function (...args) {
+      if (timeoutId) {
+        clearTimeout(timeoutId);
+      }
+      timeoutId = setTimeout(() => {
+        func.apply(this, args);
+      }, delay);
+    };
+  };
+
+  const fetchSearch = async (value) => {
+    try {
+      const response = await fetch(
+        `https://makeup-api.herokuapp.com/api/v1/products.json?`
+      );
+      const data = await response.json();
+
+      const results = data.filter((product) => {
+        const brandMatch =
+          product.brand && product.brand.toLowerCase().includes(value);
+        const productTypeMatch =
+          product.product_type &&
+          product.product_type.toLowerCase().includes(value);
+        const nameMatch =
+          product.name && product.name.toLowerCase().includes(value);
+        return brandMatch || productTypeMatch || nameMatch;
+      });
+      setData(results);
+      setResults(results);
+      return results;
+    } catch (error) {
+      console.error("Error fetching search data:", error);
+      return [];
+    }
+  };
+
+  const handleInputChange = debounce((value) => {
+    setSearchItem(value);
+    fetchSearch(value);
+  }, 100);
+
+  const handleKeyDown = async (e) => {
+    if (e.key === "Enter") {
+      e.preventDefault();
+      setIsLoading(true);
+      await fetchSearch(searchItem);
+      setIsLoading(false);
+      navigate("/search");
+    }
+  };
 
   return (
     <div>
@@ -17,8 +75,16 @@ export default function SearchBar() {
           name="search-bar"
           className={styles.searchBar}
           placeholder="Search"
+          value={searchItem}
+          onChange={(e) => handleInputChange(e.target.value)}
+          onKeyDown={handleKeyDown}
         />
       </form>
+      <div className={styles.dropDown}>
+        {data?.slice(0, 8).map((item) => (
+          <div key={item.id}>{item.name}</div>
+        ))}
+      </div>
     </div>
   );
 }

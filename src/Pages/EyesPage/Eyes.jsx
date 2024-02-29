@@ -7,12 +7,15 @@ import { price1 } from "../Data";
 import { ApplyFilters } from "../../ApplyFilters";
 import Loading from "../LoadingPage/Loading";
 
-export default function EyesPage({  
+export default function EyesPage({
   cartProd,
   showCart,
   toggleActive,
   handleDelete,
-setCartProd}) {
+  setCartProd,
+  setResults,
+  setIsLoading,
+}) {
   const eyesProductsTypes = ["eyebrow", "eyeliner", "eyeshadow", "mascara"];
 
   const [filteredProducts, setFilteredProducts] = useState([]);
@@ -24,13 +27,12 @@ setCartProd}) {
     color: [],
     price: [],
   });
-  const [sortedProducts, setSortedProducts] = useState('popularity');
+  const [sortedProducts, setSortedProducts] = useState("popularity");
 
   const eyesProducts = useQuery({
     queryKey: ["eyes"],
     queryFn: () => fetchProducts(eyesProductsTypes),
   });
-
 
   const brands = [
     ...new Set(allProducts.map((product) => product.brand)),
@@ -42,8 +44,8 @@ setCartProd}) {
   const setDefaultOrder = (product) => {
     const defaultSortedProducts = [...product].sort((a, b) => b.id - a.id);
     setFilteredProducts(defaultSortedProducts);
-    setAllProducts(defaultSortedProducts)
-  }
+    setAllProducts(defaultSortedProducts);
+  };
 
   useEffect(() => {
     if (eyesProducts.isSuccess) {
@@ -62,7 +64,7 @@ setCartProd}) {
   if (eyesProducts.isLoading) return <Loading />;
 
   const showFilteredResults = (filters) => {
-    const filteredResults = ApplyFilters(allProducts, filters, price1)
+    const filteredResults = ApplyFilters(allProducts, filters, price1);
     setFilteredProducts(filteredResults);
   };
 
@@ -77,23 +79,36 @@ setCartProd}) {
 
   return (
     <CreatePage
-      title={"Eyes"}
+      title={"Eyes products"}
       products={filteredProducts}
       brands={brands}
       classifications={eyesProductsTypes}
-      colors={["blue", "red", "green", "yellow", "brown", "purple", "gray", "orange", "teal", "pink"]}
+      colors={[
+        "blue",
+        "red",
+        "green",
+        "yellow",
+        "brown",
+        "purple",
+        "gray",
+        "orange",
+        "teal",
+        "pink",
+      ]}
       properties={properties}
       prices={["< 15", "15 - 29.99", "30 - 44.99", "45 - 59.99", "> 60"]}
       handleFilter={(filters, category) => handleFilter(filters, category)}
       sortedProducts={sortedProducts}
       setSortedProducts={setSortedProducts}
       setDefaultOrder={setDefaultOrder}
-      category={'eyes'}
+      category={"eyes"}
       cartProd={cartProd}
       showCart={showCart}
       toggleActive={toggleActive}
       handleDelete={handleDelete}
       setCartProd={setCartProd}
+      setResults={setResults}
+      setIsLoading={setIsLoading}
     />
   );
 }

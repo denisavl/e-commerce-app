@@ -12,7 +12,9 @@ export default function NailsPage({
   showCart,
   toggleActive,
   handleDelete,
-  setCartProd
+  setCartProd,
+  setResults,
+  setIsLoading
 }) {
   const nailsProductTypes = ["nail_polish"];
   const [allProducts, setAllProducts] = useState([]);
@@ -75,7 +77,7 @@ export default function NailsPage({
   }
   return (
     <CreatePage
-      title={"Nails"}
+      title={"Nails products"}
       products={filteredProducts}
       brands={brands}
       classifications={["nail polish"]}
@@ -103,7 +105,8 @@ export default function NailsPage({
       toggleActive={toggleActive}
       handleDelete={handleDelete}
       setCartProd={setCartProd}
-
+      setResults={setResults}
+      setIsLoading={setIsLoading}
     />
   );
 }

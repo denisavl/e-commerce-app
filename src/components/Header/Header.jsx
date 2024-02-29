@@ -6,7 +6,8 @@ import CartPreview from "../CartPreview/CartPreview";
 import SearchBar from "../SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 
-const Header = ({cartProd, showCart, toggleActive, handleDelete, setCartProd}) => {
+
+const Header = ({cartProd, showCart, toggleActive, handleDelete, setCartProd, setResults, setIsLoading}) => {
   const totalQuantity = cartProd.reduce((total, item) => total + item.quantity, 0);
   return (
     <div className={styles.headerContainer}>
@@ -36,7 +37,7 @@ const Header = ({cartProd, showCart, toggleActive, handleDelete, setCartProd}) =
         </Link>
       </div>
       <div className={styles.rightSide}>
-      <SearchBar />
+      <SearchBar setResults={setResults} setIsLoading={setIsLoading}/>
         <div className={styles.cart} onClick={toggleActive}>
         <img
           className={styles.basketShop}
