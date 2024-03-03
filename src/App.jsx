@@ -74,6 +74,7 @@ export default function App() {
   const [shade, setShade] = useState();
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [searchItem, setSearchItem] = useState("");
 
   function toggleActive() {
     setShowCart(!showCart);
@@ -165,6 +166,8 @@ export default function App() {
               setCartProd={setCartProd}
               setResults={setResults}
               setIsLoading={setIsLoading}
+              searchItem={searchItem}
+              setSearchItem={setSearchItem}
             />
           }
         />
@@ -179,6 +182,8 @@ export default function App() {
               setCartProd={setCartProd}
               setResults={setResults}
               setIsLoading={setIsLoading}
+              searchItem={searchItem}
+              setSearchItem={setSearchItem}
             />
           }
         />
@@ -206,6 +211,8 @@ export default function App() {
                   setShade={setShade}
                   setResults={setResults}
                   setIsLoading={setIsLoading}
+                  searchItem={searchItem}
+                  setSearchItem={setSearchItem}
                 />
               }
             />
@@ -222,6 +229,8 @@ export default function App() {
               setCartProd={setCartProd}
               setResults={setResults}
               setIsLoading={setIsLoading}
+              searchItem={searchItem}
+              setSearchItem={setSearchItem}
             />
           }
         />
@@ -249,6 +258,8 @@ export default function App() {
                   setShade={setShade}
                   setResults={setResults}
                   setIsLoading={setIsLoading}
+                  searchItem={searchItem}
+              setSearchItem={setSearchItem}
                 />
               }
             />
@@ -265,6 +276,8 @@ export default function App() {
               setCartProd={setCartProd}
               setResults={setResults}
               setIsLoading={setIsLoading}
+              searchItem={searchItem}
+              setSearchItem={setSearchItem}
             />
           }
         />
@@ -292,6 +305,8 @@ export default function App() {
                   setShade={setShade}
                   setResults={setResults}
                   setIsLoading={setIsLoading}
+                  searchItem={searchItem}
+              setSearchItem={setSearchItem}
                 />
               }
             />
@@ -308,6 +323,8 @@ export default function App() {
               setCartProd={setCartProd}
               setResults={setResults}
               setIsLoading={setIsLoading}
+              searchItem={searchItem}
+              setSearchItem={setSearchItem}
             />
           }
         />
@@ -335,6 +352,8 @@ export default function App() {
                   setShade={setShade}
                   setResults={setResults}
                   setIsLoading={setIsLoading}
+                  searchItem={searchItem}
+              setSearchItem={setSearchItem}
                 />
               }
             />
@@ -351,6 +370,8 @@ export default function App() {
               setCartProd={setCartProd}
               setResults={setResults}
               setIsLoading={setIsLoading}
+              searchItem={searchItem}
+              setSearchItem={setSearchItem}
             />
           }
         />
@@ -377,6 +398,8 @@ export default function App() {
                 setShade={setShade}
                 setResults={setResults}
                 setIsLoading={setIsLoading}
+                searchItem={searchItem}
+              setSearchItem={setSearchItem}
               />
             }
           />
@@ -392,6 +415,8 @@ export default function App() {
               setCartProd={setCartProd}
               setResults={setResults}
               setIsLoading={setIsLoading}
+              searchItem={searchItem}
+              setSearchItem={setSearchItem}
             />
           }
         />
@@ -406,6 +431,8 @@ export default function App() {
               setCartProd={setCartProd}
               setResults={setResults}
               setIsLoading={setIsLoading}
+              searchItem={searchItem}
+              setSearchItem={setSearchItem}
             />
           }
         />
@@ -420,6 +447,8 @@ export default function App() {
               setCartProd={setCartProd}
               setResults={setResults}
               setIsLoading={setIsLoading}
+              searchItem={searchItem}
+              setSearchItem={setSearchItem}
             />
           }
         />
@@ -448,6 +477,8 @@ export default function App() {
                   setShade={setShade}
                   setResults={setResults}
                   setIsLoading={setIsLoading}
+                  searchItem={searchItem}
+              setSearchItem={setSearchItem}
                 />
               }
             />
@@ -465,6 +496,8 @@ export default function App() {
               setResults={setResults}
               results={results}
               setIsLoading={setIsLoading}
+              searchItem={searchItem}
+              setSearchItem={setSearchItem}
             />
           }
         />
@@ -492,6 +525,8 @@ export default function App() {
                   setShade={setShade}
                   setResults={setResults}
                   setIsLoading={setIsLoading}
+                  searchItem={searchItem}
+              setSearchItem={setSearchItem}
                 />
               }
             />
