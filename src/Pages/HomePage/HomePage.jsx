@@ -6,7 +6,7 @@ import { fetchCarousel } from "../../fetch";
 import Brands from "../../components/Brands/Brands";
 import Footer from "../../components/Footer/Footer";
 import { useQuery } from "@tanstack/react-query";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import styles from "./homePage.module.css";
 import Loading from "../LoadingPage/Loading";
 import { Link } from "react-router-dom";
@@ -19,11 +19,19 @@ export default function HomePage({
   setCartProd,
   setResults,
   setIsLoading,
+  searchItem, 
+  setSearchItem
 }) {
   const makeup = useQuery({
     queryKey: ["makeup"],
     queryFn: () => fetchCarousel(),
   });
+
+  useEffect(() => {
+    return () => {
+      setCurrentPage(0);
+    };
+  }, [makeup.data]);
 
   const [currentPage, setCurrentPage] = useState(0);
   const limitedData = makeup.data?.slice(0, 16) || [];
@@ -64,6 +72,8 @@ export default function HomePage({
         setCartProd={setCartProd}
         setResults={setResults}
         setIsLoading={setIsLoading}
+        searchItem={searchItem}
+        setSearchItem={setSearchItem}
       />
       <Poster />
       <Brands />

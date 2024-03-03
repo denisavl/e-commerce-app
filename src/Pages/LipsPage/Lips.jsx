@@ -14,7 +14,9 @@ export default function LipsPage({
   handleDelete,
   setCartProd,
   setResults,
-  setIsLoading
+  setIsLoading,
+  searchItem, 
+  setSearchItem
 }) {
   const lipsProductTypes = ["lip_liner", "lipstick"];
   const [allProducts, setAllProducts] = useState([]);
@@ -59,6 +61,21 @@ export default function LipsPage({
       setDefaultOrder(products);
     }
   }, [lipsProducts.data, lipsProducts.isSuccess]);
+
+  useEffect(() => {
+    return () => {
+      setFilteredProducts([]);
+      setAllProducts([]);
+      setSelectedFilter({
+        brand: [],
+        classification: [],
+        property: [],
+        color: [],
+        price: [],
+      });
+      setSortedProducts("popularity");
+    };
+  }, []);
 
   if (lipsProducts.isLoading) return <Loading />;
 
@@ -106,6 +123,8 @@ export default function LipsPage({
       setCartProd={setCartProd}
       setResults={setResults}
       setIsLoading={setIsLoading}
+      searchItem={searchItem}
+      setSearchItem={setSearchItem}
     />
   );
 }

@@ -14,7 +14,9 @@ export default function LipstickPage({
   handleDelete,
   setCartProd,
   setResults,
-  setIsLoading
+  setIsLoading,
+  searchItem, 
+  setSearchItem
 }) {
   const [allProducts, setAllProducts] = useState([]);
   const [selectedFilter, setSelectedFilter] = useState({
@@ -50,6 +52,21 @@ export default function LipstickPage({
     setFilteredProducts(products);
     setDefaultOrder(products);
   }, [lipstickProducts.data]);
+
+  useEffect(() => {
+    return () => {
+      setFilteredProducts([]);
+      setAllProducts([]);
+      setSelectedFilter({
+        brand: [],
+        classification: [],
+        property: [],
+        color: [],
+        price: [],
+      });
+      setSortedProducts("popularity");
+    };
+  }, []);
 
   if (lipstickProducts.isLoading) return <Loading />;
 
@@ -98,6 +115,8 @@ export default function LipstickPage({
       setCartProd={setCartProd}
       setResults={setResults}
       setIsLoading={setIsLoading}
+      searchItem={searchItem}
+      setSearchItem={setSearchItem}
     />
   );
 }

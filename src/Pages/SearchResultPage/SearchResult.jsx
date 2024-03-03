@@ -12,7 +12,9 @@ export default function SearchResult({
   setCartProd,
   setResults,
   results,
-  setIsLoading
+  setIsLoading,
+  searchItem, 
+  setSearchItem
 }) {
   const [selectedFilter, setSelectedFilter] = useState({
     brand: [],
@@ -42,6 +44,21 @@ export default function SearchResult({
       setDefaultOrder(results);
     }
   }, [results]);
+
+  useEffect(() => {
+    return () => {
+      setFilteredProducts([]);
+      setSelectedFilter({
+        brand: [],
+        classification: [],
+        property: [],
+        color: [],
+        price: [],
+      });
+      setSortedProducts("popularity");
+    };
+  }, []);
+
   const showFilteredResults = (filters) => {
     const filteredResults = ApplyFilters(results, filters, allPrices);
     setFilteredProducts(filteredResults);
@@ -58,7 +75,7 @@ export default function SearchResult({
 
   return (
     <CreatePage
-      title={`Search results for: `}
+      title={`Search results for ${searchItem}: `}
       products={filteredProducts}
       brands={brands}
       classifications={[
@@ -112,6 +129,8 @@ export default function SearchResult({
       setCartProd={setCartProd}
       setResults={setResults}
       setIsLoading={setIsLoading}
+      searchItem={searchItem}
+      setSearchItem={setSearchItem}
     />
   );
 }

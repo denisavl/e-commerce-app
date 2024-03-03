@@ -14,7 +14,9 @@ export default function ShopAll({
   handleDelete,
   setCartProd,
   setResults,
-  setIsLoading
+  setIsLoading,
+  searchItem, 
+  setSearchItem
 }) {
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [allProducts, setAllProducts] = useState([]);
@@ -41,6 +43,21 @@ export default function ShopAll({
       }
     }
   ,[makeup.data, makeup.isSuccess]);
+
+  useEffect(() => {
+    return () => {
+      setFilteredProducts([]);
+      setAllProducts([]);
+      setSelectedFilter({
+        brand: [],
+        classification: [],
+        property: [],
+        color: [],
+        price: [],
+      });
+      setSortedProducts("popularity");
+    };
+  }, []);
 
   if (makeup.isLoading) return <Loading />;
 
@@ -77,7 +94,8 @@ export default function ShopAll({
         title={"Make up products"}
         products={filteredProducts}
         brands={brands}
-        classifications={["eyebrow",
+        classifications={
+        ["eyebrow",
         "eyeliner",
         "eyeshadow",
         "mascara",
@@ -118,6 +136,8 @@ export default function ShopAll({
         setCartProd={setCartProd}
         setResults={setResults}
         setIsLoading={setIsLoading}
+        searchItem={searchItem}
+        setSearchItem={setSearchItem}
       />
     </div>
   );

@@ -11,7 +11,9 @@ export default function AboutUs({
   handleDelete,
   setCartProd,
   setResults,
-  setIsLoading
+  setIsLoading,
+  searchItem, 
+  setSearchItem
 }) {
   return (
     <div>
@@ -23,6 +25,8 @@ export default function AboutUs({
         setCartProd={setCartProd}
         setResults={setResults}
         setIsLoading={setIsLoading}
+        searchItem={searchItem}
+        setSearchItem={setSearchItem}
       />
       <div className={styles.content}>
         <div className={styles.aboutTitle}>#AboutGlam</div>

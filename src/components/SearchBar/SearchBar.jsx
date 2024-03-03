@@ -1,64 +1,88 @@
 /* eslint-disable react/prop-types */
 import styles from "../SearchBar/searchBar.module.css";
-import { useState } from "react";
+import { useEffect, useState, useRef } from "react";
 import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
-export default function SearchBar({ setResults, setIsLoading, }) {
-  const [searchItem, setSearchItem] = useState("");
-  const [data, setData] = useState();
-
+export default function SearchBar({ setResults, setIsLoading, searchItem, setSearchItem }) {
+  const [filteredData, setFilteredData] = useState([]);
+  const [loadingPreview, setLoadingPreview] = useState(false);
+  const [showPreview, setShowPreview] = useState(false);
+  const inputRef = useRef();
   const navigate = useNavigate();
+  useEffect(() => {
+    const fetchSearch = async (value) => {
+      try {
+        setLoadingPreview(true);
+        const response = await fetch(
+          `https://makeup-api.herokuapp.com/api/v1/products.json?`
+        );
+        const data = await response.json();
 
-  const debounce = (func, delay) => {
-    let timeoutId;
-    return function (...args) {
-      if (timeoutId) {
-        clearTimeout(timeoutId);
+        const results = data.filter((product) => {
+          const brandMatch =
+            product.brand && product.brand.toLowerCase().includes(value);
+          const productTypeMatch =
+            product.product_type &&
+            product.product_type.toLowerCase().includes(value);
+          const nameMatch =
+            product.name && product.name.toLowerCase().includes(value);
+          return brandMatch || productTypeMatch || nameMatch;
+        });
+
+        setResults(results);
+        setFilteredData(results);
+        setShowPreview(results.length > 0);
+      } catch (error) {
+        console.error("Error fetching search data:", error);
+      } finally {
+        setLoadingPreview(false);
       }
-      timeoutId = setTimeout(() => {
-        func.apply(this, args);
-      }, delay);
     };
-  };
 
-  const fetchSearch = async (value) => {
-    try {
-      const response = await fetch(
-        `https://makeup-api.herokuapp.com/api/v1/products.json?`
-      );
-      const data = await response.json();
+    if (searchItem) {
+      // setShowPreview(true);
+      const debounceTimeout = setTimeout(() => {
+        fetchSearch(searchItem);
+      }, 300);
 
-      const results = data.filter((product) => {
-        const brandMatch =
-          product.brand && product.brand.toLowerCase().includes(value);
-        const productTypeMatch =
-          product.product_type &&
-          product.product_type.toLowerCase().includes(value);
-        const nameMatch =
-          product.name && product.name.toLowerCase().includes(value);
-        return brandMatch || productTypeMatch || nameMatch;
-      });
-      setData(results);
-      setResults(results);
-      return results;
-    } catch (error) {
-      console.error("Error fetching search data:", error);
-      return [];
+      return () => clearTimeout(debounceTimeout);
+    } else {
+      setShowPreview(false);
     }
-  };
 
-  const handleInputChange = debounce((value) => {
+    return undefined;
+  }, [searchItem, setResults]);
+
+  const handleInputChange = (value) => {
     setSearchItem(value);
-    fetchSearch(value);
-  }, 100);
+  };
 
   const handleKeyDown = async (e) => {
     if (e.key === "Enter") {
       e.preventDefault();
       setIsLoading(true);
-      await fetchSearch(searchItem);
-      setIsLoading(false);
       navigate("/search");
+      setIsLoading(false);
+    }
+  };
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (inputRef.current && !inputRef.current.contains(event.target)) {
+        setShowPreview(false);
+      }
+    };
+
+    document.addEventListener("click", handleClickOutside);
+    return () => {
+      document.removeEventListener("click", handleClickOutside);
+    };
+  }, []);
+
+  const handleInputClick = () => {
+    if (filteredData.length > 0) {
+      setShowPreview(true);
     }
   };
 
@@ -78,13 +102,36 @@ export default function SearchBar({ setResults, setIsLoading, }) {
           value={searchItem}
           onChange={(e) => handleInputChange(e.target.value)}
           onKeyDown={handleKeyDown}
+          ref={inputRef}
+          onClick={handleInputClick}
         />
+        {loadingPreview && <span className={styles.loader}></span>}
       </form>
-      <div className={styles.dropDown}>
-        {data?.slice(0, 8).map((item) => (
-          <div key={item.id}>{item.name}</div>
-        ))}
-      </div>
+
+      {showPreview && (
+        <div className={styles.dropDown}>
+          <div className={styles.productsTitle}>Products</div>
+          {filteredData.slice(0, 6).map((item) => (
+            <div key={item.id} >
+              <Link
+                to={`/search/${item.id}`}
+              >
+                <div className={styles.productContainer}>
+                  <img
+                    className={styles.productImg}
+                    src={item.api_featured_image}
+                    alt={item.name}
+                  />
+                  <div className={styles.descriptionProduct}>
+                    <div className={styles.brand}>{item.brand}</div>
+                    <div>{item.name}</div>
+                  </div>
+                </div>
+              </Link>
+            </div>
+          ))}
+        </div>
+      )}
     </div>
   );
 }

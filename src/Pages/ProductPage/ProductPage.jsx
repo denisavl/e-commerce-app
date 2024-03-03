@@ -24,7 +24,9 @@ export default function ProductPage({
   setCartProd,
   setShade,
   setResults,
-  setIsLoading
+  setIsLoading,
+  searchItem, 
+  setSearchItem
 }) {
   const [displayProduct, setDisplayProduct] = useState(null);
   const product = useQuery({
@@ -84,6 +86,8 @@ export default function ProductPage({
         setCartProd={setCartProd}
         setResults={setResults}
         setIsLoading={setIsLoading}
+        searchItem={searchItem}
+        setSearchItem={setSearchItem}
       />
       <div className={styles.pageContent}>
         <nav className={styles.navBar}>

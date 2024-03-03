@@ -14,7 +14,9 @@ export default function NailsPage({
   handleDelete,
   setCartProd,
   setResults,
-  setIsLoading
+  setIsLoading,
+  searchItem, 
+  setSearchItem
 }) {
   const nailsProductTypes = ["nail_polish"];
   const [allProducts, setAllProducts] = useState([]);
@@ -60,6 +62,21 @@ export default function NailsPage({
       setDefaultOrder(products);
     }
   }, [nailsProducts.data, nailsProducts.isSuccess]);
+
+  useEffect(() => {
+    return () => {
+      setFilteredProducts([]);
+      setAllProducts([]);
+      setSelectedFilter({
+        brand: [],
+        classification: [],
+        property: [],
+        color: [],
+        price: [],
+      });
+      setSortedProducts("popularity");
+    };
+  }, []);
 
   if (nailsProducts.isLoading) return <Loading />;
 
@@ -107,6 +124,8 @@ export default function NailsPage({
       setCartProd={setCartProd}
       setResults={setResults}
       setIsLoading={setIsLoading}
+      searchItem={searchItem}
+      setSearchItem={setSearchItem}
     />
   );
 }

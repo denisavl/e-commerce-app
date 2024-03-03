@@ -15,6 +15,8 @@ export default function EyesPage({
   setCartProd,
   setResults,
   setIsLoading,
+  searchItem, 
+  setSearchItem
 }) {
   const eyesProductsTypes = ["eyebrow", "eyeliner", "eyeshadow", "mascara"];
 
@@ -60,6 +62,21 @@ export default function EyesPage({
       setDefaultOrder(products);
     }
   }, [eyesProducts.data, eyesProducts.isSuccess]);
+
+  useEffect(() => {
+    return () => {
+      setFilteredProducts([]);
+      setAllProducts([]);
+      setSelectedFilter({
+        brand: [],
+        classification: [],
+        property: [],
+        color: [],
+        price: [],
+      });
+      setSortedProducts("popularity");
+    };
+  }, []);
 
   if (eyesProducts.isLoading) return <Loading />;
 
@@ -109,6 +126,8 @@ export default function EyesPage({
       setCartProd={setCartProd}
       setResults={setResults}
       setIsLoading={setIsLoading}
+      searchItem={searchItem}
+      setSearchItem={setSearchItem}
     />
   );
 }

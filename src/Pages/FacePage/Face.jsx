@@ -15,6 +15,8 @@ export default function FacePage({
   setCartProd,
   setResults,
   setIsLoading,
+  searchItem, 
+  setSearchItem
 }) {
   const faceProductTypes = ["foundation", "blush", "bronzer"];
   const [allProducts, setAllProducts] = useState([]);
@@ -59,6 +61,21 @@ export default function FacePage({
       setDefaultOrder(products);
     }
   }, [faceProducts.data, faceProducts.isSuccess]);
+
+  useEffect(() => {
+    return () => {
+      setFilteredProducts([]);
+      setAllProducts([]);
+      setSelectedFilter({
+        brand: [],
+        classification: [],
+        property: [],
+        color: [],
+        price: [],
+      });
+      setSortedProducts("popularity");
+    };
+  }, []);
 
   if (faceProducts.isLoading) return <Loading />;
 
@@ -108,6 +125,8 @@ export default function FacePage({
       setCartProd={setCartProd}
       setResults={setResults}
       setIsLoading={setIsLoading}
+      searchItem={searchItem}
+      setSearchItem={setSearchItem}
     />
   );
 }

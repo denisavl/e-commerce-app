@@ -7,7 +7,7 @@ import SearchBar from "../SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 
 
-const Header = ({cartProd, showCart, toggleActive, handleDelete, setCartProd, setResults, setIsLoading}) => {
+const Header = ({cartProd, showCart, toggleActive, handleDelete, setCartProd, setResults, setIsLoading, searchItem, setSearchItem}) => {
   const totalQuantity = cartProd.reduce((total, item) => total + item.quantity, 0);
   return (
     <div className={styles.headerContainer}>
@@ -37,7 +37,11 @@ const Header = ({cartProd, showCart, toggleActive, handleDelete, setCartProd, se
         </Link>
       </div>
       <div className={styles.rightSide}>
-      <SearchBar setResults={setResults} setIsLoading={setIsLoading}/>
+      <SearchBar 
+      setResults={setResults} 
+      setIsLoading={setIsLoading}
+      searchItem={searchItem}
+      setSearchItem={setSearchItem}/>
         <div className={styles.cart} onClick={toggleActive}>
         <img
           className={styles.basketShop}

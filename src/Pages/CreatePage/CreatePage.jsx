@@ -24,7 +24,9 @@ export default function CreatePage({
   handleDelete,
   setCartProd,
   setResults,
-  setIsLoading
+  setIsLoading,
+  searchItem, 
+  setSearchItem
 }) {
   const [activeFilter, setActiveFilter] = useState(null);
   const [checkedBrand, setCheckedBrand] = useState([]);
@@ -110,6 +112,8 @@ export default function CreatePage({
       setCartProd={setCartProd}
       setResults={setResults}
       setIsLoading={setIsLoading}
+      searchItem={searchItem}
+      setSearchItem={setSearchItem}
       />
       <div className={styles.pageContainer}>
         <h1 className={styles.titlePage}>
