@@ -40,11 +40,11 @@ export default function HomePage({
     function getItemsPerRow() {
       if (window.innerWidth <= 500) {
         return 1;
-      } else if (window.innerWidth <= 750) {
+      } else if (window.innerWidth <= 760) {
         return 2;
       } else if (window.innerWidth <= 1024) {
         return 3;
-      } else {
+      } else if (window.innerWidth > 1024){
         return 4;
       }
     }

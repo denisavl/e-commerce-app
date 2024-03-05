@@ -4,14 +4,12 @@
     height: 470px;
     background: url('../../assets/poster.jpg') no-repeat center;
     background-size: cover;
-    width: 100%;
     font-family: "Poppins", sans-serif;
 }
 
 .content {
     color: white;
     max-width: 350px; 
-    width: 100%;
     padding: 100px 150px;
   }
 
@@ -57,5 +55,30 @@
     .btn{
         padding: 5px 15px;
         font-size: 15px;
+    }
+}
+
+@media only screen and (max-width: 768px) {
+    .content > h1{
+        font-size: 16px;
+    }
+    .content p{
+        font-size: 12px;
+    }
+
+    .btn{
+        padding: 5px 10px;
+        font-size: 12px;
+    }
+
+     .content{
+        max-width: 200px;  
+        padding: 50px 60px;
+    } 
+
+    .container{
+        box-sizing: border-box;
+        height: 300px;
+        
     }
 }

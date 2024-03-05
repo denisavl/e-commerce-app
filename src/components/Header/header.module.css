@@ -8,12 +8,22 @@ body, html {
     width: 100%;
 }
 
-.headerContainer {
+.bigContainer,
+.firstRow
+{
     display: flex;
     justify-content: space-between;
-    border-bottom: 1px solid black;
     padding: 15px 30px;
     align-items: center;    
+}
+
+.secondRow{
+  width: 100%;
+}
+
+
+.resizedContainer {
+  display: grid;
 }
 
 .logo {
@@ -106,10 +116,6 @@ body, html {
   }
 
   .logo{
-    /* margin-right: -100px; */
-  }
-
-  .headerContainer {
-    width: 100%;
+    margin-right: 0;
   }
 }

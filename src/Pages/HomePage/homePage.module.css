@@ -100,5 +100,13 @@
   .containerBestSeller {
     grid-template-columns: repeat(1, 1fr);
   }
+
+  .previous {
+    left: 35px;
+  }
+  
+  .next {
+    right: 35px;
+  }
 }
 
