@@ -7,8 +7,8 @@
 
 .footerMain{
     display: flex;
-    align-items: center;
-    justify-content: center;
+    /* align-items: center;*/
+    justify-content: center; 
     gap: 25px;
     padding: 50px 0px;
     font-size: 17px;
@@ -34,6 +34,7 @@ img{
     gap: 20px;
     align-items: center;
     justify-content: center;
+    flex-wrap: wrap;
 }
 
 .btn{
@@ -53,4 +54,18 @@ li>a:hover{
 #socialLogo{
     display: flex;
     gap: 3px;
+}
+
+@media only screen and (max-width: 1024px) {
+  .footerMain{
+    flex-wrap: wrap;
+    padding:10px;
+    gap:20px;
+  }
+}
+
+@media only screen and (max-width: 768px) {
+    .footerMain{
+        justify-content: flex-start;
+    }
 }

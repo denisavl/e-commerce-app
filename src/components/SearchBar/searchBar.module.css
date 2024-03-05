@@ -109,3 +109,20 @@
         transform: rotate(360deg);
     }
 }
+
+@media only screen and (max-width: 1024px) {
+    .searchBar{
+        width: 70px;
+    }
+
+    .searchIcon{
+        width: 20px;
+    }
+    .searchBar::placeholder{
+        font-size: 14px;
+    }
+  }
+  
+  @media only screen and (max-width: 768px) {
+  
+  }

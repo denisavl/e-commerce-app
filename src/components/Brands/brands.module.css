@@ -1,44 +1,15 @@
-.containerBrands{
-    display: flex;
-    gap: 20px;
-    padding: 40px 0px;
-    flex-wrap: wrap;
-    justify-content: center;
-    position: relative;
-    max-width: 1400px;
-    margin: 0 auto;
-}
 
 .contImg{
-    border: 1px solid #CCC;
-    padding: 3px 10px;
-    cursor: pointer;
+    max-width: 100%;
 }
 
-.contImg > img{
-    width: 180px;
-    height: 70px;
-
+.contImg > img {
+  width: 80%;
 }
 
-.previous,
-.next {
-  position: absolute;
-  top: 40%;
-  font-size: 28px;
-  cursor: pointer;
-  transition: color 0.3s ease-in-out;
-}
-
-.previous:hover,
-.next:hover{
-  color: #55555561;
-}
-
-.previous {
-  left: 10px;
-}
-
-.next {
-  right: 10px;
+#slider {
+  padding: 30px 0;
+  width: 70%;
+  display: block;
+  margin: 0 auto;
 }

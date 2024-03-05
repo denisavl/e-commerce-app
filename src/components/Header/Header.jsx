@@ -1,17 +1,40 @@
 /* eslint-disable react/prop-types */
 import logoImg from "../../assets/logo.png";
+import menuImg from "../../assets/menuIcon.png"
 import styles from "./header.module.css";
 import basketIcon from "../../assets/shopping-cart.png";
 import CartPreview from "../CartPreview/CartPreview";
 import SearchBar from "../SearchBar/SearchBar";
 import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
 
 
 const Header = ({cartProd, showCart, toggleActive, handleDelete, setCartProd, setResults, setIsLoading, searchItem, setSearchItem}) => {
   const totalQuantity = cartProd.reduce((total, item) => total + item.quantity, 0);
+  const [showMenu, setShowMenu] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setShowMenu(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
   return (
     <div className={styles.headerContainer}>
-      <ul className={styles.buttons}>
+      {showMenu ? (
+         <div className={styles.menuButton}>
+         <img src={menuImg} alt="menu" />
+       </div>
+      ) :
+      (
+        <ul className={styles.buttons}>
         <li>
           <Link to="/shop" className={styles.btn}>Shop All</Link>
         </li>
@@ -31,6 +54,7 @@ const Header = ({cartProd, showCart, toggleActive, handleDelete, setCartProd, se
           <Link to="/about" className={styles.btn}>About Us</Link>
         </li>
       </ul>
+      )}
       <div>
         <Link to="/">
           <img className={styles.logo} src={logoImg} alt="logo image" />

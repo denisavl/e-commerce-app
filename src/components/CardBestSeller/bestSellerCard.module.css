@@ -28,3 +28,44 @@
     letter-spacing: 1px;
     text-transform: uppercase;
 }
+
+@media only screen and (max-width: 1024px) {
+    .cardContainer {
+      max-width: 200px;
+      height: auto;
+    }
+    .productImg{
+        width: 100px;
+        height: 120px;
+    }
+    .cardContainer > p{
+        height: 50px;
+    }
+    .brand{
+        font-size: 18px;
+        padding-top: 15px;
+        padding-bottom: 5px;
+    }
+  }
+  
+  @media only screen and (max-width: 750px) {
+    .cardContainer {
+        max-width: 160px;
+    }
+
+    .productImg{
+        width: 100px;
+        height: 120px;
+    }
+  }
+
+  @media only screen and (max-width: 750px) {
+    .cardContainer {
+        max-width: 200px;
+    }
+
+    .productImg{
+        width: 120px;
+        height: 140px;
+    }
+  }

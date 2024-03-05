@@ -3,7 +3,7 @@ import Header from "../../components/Header/Header";
 import Poster from "../../components/Poster/PosterHome";
 import CardBestSeller from "../../components/CardBestSeller/BestSellerCard";
 import { fetchCarousel } from "../../fetch";
-import Brands from "../../components/Brands/Brands";
+import CarouselBrands from "../../components/Brands/Brands";
 import Footer from "../../components/Footer/Footer";
 import { useQuery } from "@tanstack/react-query";
 import { useState, useEffect } from "react";
@@ -34,14 +34,43 @@ export default function HomePage({
   }, [makeup.data]);
 
   const [currentPage, setCurrentPage] = useState(0);
+  const [itemsPerRow, setItemsPerRow] = useState(4);
+
+  useEffect(() => {
+    function getItemsPerRow() {
+      if (window.innerWidth <= 500) {
+        return 1;
+      } else if (window.innerWidth <= 750) {
+        return 2;
+      } else if (window.innerWidth <= 1024) {
+        return 3;
+      } else {
+        return 4;
+      }
+    }
+
+    function handleResize() {
+      setItemsPerRow(getItemsPerRow());
+    }
+
+    window.addEventListener("resize", handleResize);
+
+    return () => {
+      window.removeEventListener("resize", handleResize);
+    };
+  }, []);
+
+ 
   const limitedData = makeup.data?.slice(0, 16) || [];
   const totalPages = 4;
-  const startIndex = currentPage * 4;
-  const endIndex = startIndex + 4;
+  const startIndex = currentPage * itemsPerRow;
+  const endIndex = startIndex + itemsPerRow;
   const productsToShow = [...limitedData.slice(startIndex, endIndex)];
 
   if (makeup.isLoading) return <Loading />;
   if (makeup.isError) return <h1>Error loading data!!!</h1>;
+
+
 
   const navigateToPage = (pageNumber) => {
     if (pageNumber >= totalPages) {
@@ -63,7 +92,7 @@ export default function HomePage({
   };
 
   return (
-    <>
+    <div className={styles.homeContainer}>
       <Header
         cartProd={cartProd}
         showCart={showCart}
@@ -76,7 +105,7 @@ export default function HomePage({
         setSearchItem={setSearchItem}
       />
       <Poster />
-      <Brands />
+      <CarouselBrands />
       <h1 className={styles.headerSeller}>Best Seller</h1>
       <div className={styles.carouselContainer}>
         <div className={styles.container}>
@@ -96,6 +125,6 @@ export default function HomePage({
         </div>
       </div>
       <Footer />
-    </>
+    </div>
   );
 }
