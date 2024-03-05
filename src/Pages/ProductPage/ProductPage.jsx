@@ -25,8 +25,8 @@ export default function ProductPage({
   setShade,
   setResults,
   setIsLoading,
-  searchItem, 
-  setSearchItem
+  searchItem,
+  setSearchItem,
 }) {
   const [displayProduct, setDisplayProduct] = useState(null);
   const product = useQuery({
@@ -61,7 +61,10 @@ export default function ProductPage({
 
   useEffect(() => {
     if (displayProduct) {
-      if (displayProduct.product_colors && displayProduct.product_colors.length > 0) {
+      if (
+        displayProduct.product_colors &&
+        displayProduct.product_colors.length > 0
+      ) {
         setShade(displayProduct.product_colors[0].colour_name);
       }
     }
@@ -74,7 +77,6 @@ export default function ProductPage({
   }, [productId, setCount]);
 
   if (product.isLoading) return <Loading />;
-
 
   return (
     <div>
@@ -130,13 +132,20 @@ export default function ProductPage({
                 <div className={styles.shadeMenuTitle}>CHOOSE YOUR SHADE</div>
                 <div className={styles.shadeWrapper}>
                   <div className={styles.shades}>
-                    {displayProduct.product_colors.map((color, index) => (
-                      <div className={`${styles.colors} ${shade === color.colour_name ? styles.selected : ''}`} onClick={() =>
-                        handleShade(color)}
-                        key={index}
-                        style={{ backgroundColor: color.hex_value }}
-                      ></div>
-                    ))}
+                    {displayProduct.product_colors.length === 0 ? (
+                      <div>No shades available</div>
+                    ) : (
+                      displayProduct.product_colors.map((color, index) => (
+                        <div
+                          className={`${styles.colors} ${
+                            shade === color.colour_name ? styles.selected : ""
+                          }`}
+                          onClick={() => handleShade(color)}
+                          key={index}
+                          style={{ backgroundColor: color.hex_value }}
+                        ></div>
+                      ))
+                    )}
                   </div>
                 </div>
               </div>
@@ -152,10 +161,10 @@ export default function ProductPage({
                 >
                   <span className={styles.addTitleBtn}>ADD</span>
                   <span className={styles.price}>
-                  $
-                {displayProduct.price && displayProduct.price > 0
-                  ? `${displayProduct.price}`
-                  : `${(displayProduct.price = "15.0")}`}
+                    $
+                    {displayProduct.price && displayProduct.price > 0
+                      ? `${displayProduct.price}`
+                      : `${(displayProduct.price = "15.0")}`}
                   </span>
                 </button>
                 <div className={styles.quantity}>
