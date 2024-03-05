@@ -134,4 +134,15 @@
     .searchIcon {
         left: 25px;
     }
+
+    .productsTitle{
+        font-size: 20px;
+    }
+
+    .dropDown{
+        padding: 10px 20px;
+        width: 84%;
+        right: 2.5%;
+    }
+
   }

@@ -7,7 +7,6 @@
 
 .footerMain{
     display: flex;
-    /* align-items: center;*/
     justify-content: center; 
     gap: 25px;
     padding: 50px 0px;
@@ -24,7 +23,7 @@ a{
     text-decoration: none; 
 } 
 
-img{
+.column > img{
     width: 40px;
     cursor: pointer;
 }
@@ -67,5 +66,27 @@ li>a:hover{
 @media only screen and (max-width: 768px) {
     .footerMain{
         justify-content: flex-start;
+        padding:10px;
+        gap:5px;
+    }
+
+    .footerBottom{
+        gap: 10px;
+    }
+
+    .column > img{
+        width: 30px;
+    }
+
+    li > a{
+        font-size: 14px;
+    }
+
+    .footerMain > ul{
+        margin: 5px;
+    }
+
+    .column li{
+        padding: 1px 0px;
     }
 }

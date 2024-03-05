@@ -1,0 +1,53 @@
+.closeMenu{
+    display: flex;
+}
+
+.moduleContainer{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    overflow-y: auto;
+}
+
+.container{
+    position: fixed;
+    left: 0;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    font-family: 'Poppins', sans-serif;
+}
+
+.buttons{
+    padding: 0;
+}
+
+.buttons li{
+    list-style: none;
+    width: 100%;
+    padding: 10px 15px;
+    margin: 0;
+    border-bottom: 1px solid #8a8a8a;
+    
+}
+
+.btn{
+    font-size: 17px;
+    cursor: pointer;
+}
+
+.closeMenu > button{
+    width: 100%;
+    border: none;
+    background-color: #212121;
+    color: white;
+    padding: 22px 28px;
+    font-weight: bold;
+    cursor: pointer;
+    font-size: 17px;
+}

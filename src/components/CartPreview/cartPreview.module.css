@@ -137,3 +137,21 @@
 .price{
     font-weight: bold;
 }
+
+@media only screen and (max-width: 1024px){
+    .cartPreviewContainer{
+        width: 45%;
+    }
+}
+
+@media only screen and (max-width: 768px){
+    .cartPreviewContainer{
+        width: 100%;
+
+    }
+    .continueShoppingBtn,
+    .completeOrderBtn{
+        font-size: 17px;
+    }
+}
+

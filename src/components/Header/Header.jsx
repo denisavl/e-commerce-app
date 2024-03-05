@@ -4,6 +4,7 @@ import menuImg from "../../assets/menuIcon.png";
 import styles from "./header.module.css";
 import basketIcon from "../../assets/shopping-cart.png";
 import CartPreview from "../CartPreview/CartPreview";
+import MenuResized from "../MenuResized/MenuResized";
 import SearchBar from "../SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
@@ -24,6 +25,11 @@ const Header = ({
     0
   );
   const [showMenu, setShowMenu] = useState(false);
+  const [openMenu, setOpenMenu] = useState(false);
+
+  function toggleMenu(){
+    setOpenMenu(!openMenu);
+  }
 
   useEffect(() => {
     const handleResize = () => {
@@ -43,9 +49,10 @@ const Header = ({
       {showMenu ? (
         <div className={styles.resizedContainer}>
           <div className={styles.firstRow}>
-            <div className={styles.menuButton}>
+            <div className={styles.menuButton} onClick={toggleMenu}>
               <img src={menuImg} alt="menu" />
             </div>
+            {openMenu && <MenuResized toggleMenu={toggleMenu}/>}
             <div>
               <Link to="/">
                 <img className={styles.logo} src={logoImg} alt="logo image" />
