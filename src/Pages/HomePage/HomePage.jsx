@@ -48,13 +48,14 @@ export default function HomePage({
         return 4;
       }
     }
-
+  
     function handleResize() {
       setItemsPerRow(getItemsPerRow());
     }
-
+    handleResize();
+  
     window.addEventListener("resize", handleResize);
-
+  
     return () => {
       window.removeEventListener("resize", handleResize);
     };

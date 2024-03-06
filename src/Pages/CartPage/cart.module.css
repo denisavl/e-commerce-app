@@ -160,3 +160,22 @@
     letter-spacing: 1px;
 }
 
+@media only screen and (max-width: 1024px) {
+    .emptyCartTitle{
+        font-size: 26px;
+    }
+
+    .emptyCartImg{
+        width: 450px;
+    }
+}
+
+@media only screen and (max-width: 760px) {
+    .emptyCartTitle{
+        font-size: 24px;
+    }
+
+    .emptyCartImg{
+        width: 380px;
+    }
+}
