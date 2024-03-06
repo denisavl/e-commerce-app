@@ -1,0 +1,86 @@
+.filtersContainer {
+    position: fixed;
+    left: 0;
+    background-color: white;
+    height: 100%;
+    width: 100%;
+    overflow-y: auto;
+    font-family: 'Poppins', sans-serif;
+}
+
+.moduleContainer{
+    position: fixed;
+    top: 0;
+    right: 0;
+    bottom: 0;
+    left: 0;
+    background-color: rgba(0, 0, 0, 0.5);
+    z-index: 1;
+    overflow-y: auto;
+}
+
+.filterBox > button {
+    background-color: transparent;
+    border: none;
+    padding: 0;
+    font-size: 15px;
+    cursor: pointer;
+}
+
+.filtersTitle{
+    padding: 20px 0px 0px 20px;
+    font-size: 24px;
+    font-weight: bold;
+}
+
+.filterBox {
+    padding: 5px 10px;
+    border: 1px solid #e6e6e6;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    cursor: pointer;
+    position: relative;
+    margin: 15px;
+}
+
+.filterOptions{
+    position: absolute;
+    z-index: 1;
+    overflow: auto;
+    max-height: 340px;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    border: 1px solid #e6e6e6;
+}
+
+.filterOptions li {
+    padding: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .filterOptions li:last-child {
+    border-bottom: none;
+  }
+
+  .filterOptions li:hover {
+    background-color: #f0f0f0;
+  }
+
+  .closeFilters{
+    width: 85%;
+    margin: 30px auto;
+    display: block;
+    padding: 12px;
+    background-color: #212121;
+    cursor: pointer;
+    font-weight: bold;
+    border-radius: 5px;
+    color: white;
+  }

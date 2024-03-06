@@ -27,6 +27,36 @@
     position: relative;
 }
 
+.filterOptions{
+    position: absolute;
+    z-index: 1;
+    overflow: auto;
+    max-height: 340px;
+    width: 100%;
+    top: 100%;
+    left: 0;
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    background-color: white;
+    border: 1px solid #e6e6e6;
+}
+
+.filterOptions li {
+    padding: 8px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+  }
+  
+  .filterOptions li:last-child {
+    border-bottom: none;
+  }
+
+  .filterOptions li:hover {
+    background-color: #f0f0f0;
+  }
+
+
 .sortContainer {
     padding-top: 30px;
     display: flex;
@@ -107,36 +137,45 @@ p{
     font-size: 24px;
 }
 
-.filterOptions{
-    position: absolute;
-    z-index: 1;
-    overflow: auto;
-    max-height: 340px;
-    width: 100%;
-    top: 100%;
-    left: 0;
-    list-style: none;
-    padding: 0;
-    margin: 0;
-    background-color: white;
-    border: 1px solid #e6e6e6;
+
+
+@media only screen and (max-width: 1024px){
+    .filterBox > button {
+        font-size: 14px;
+    }
+    .filtersContainer{
+        gap:6px;
+    }
+
+    .titlePage{
+        font-size: 22px;
+    }
+
+    .productBox{
+        width: 200px;
+        max-height: 300px;
+        padding: 20px 10px;
+    }
+
+    .productsContainer {
+        gap: 10px;
+    }
+
+    input[type="checkbox"]{
+        width: 14px;
+        height: 14px;
+      }
+    .checkBox{
+        font-size: 14px;
+        text-transform: lowercase;
+    }
+
+    .pageContainer {
+        padding: 10px 50px;
+    }
 }
 
-.filterOptions li {
-    padding: 8px;
-    cursor: pointer;
-    transition: background-color 0.3s ease;
-  }
-  
-  .filterOptions li:last-child {
-    border-bottom: none;
-  }
-
-  .filterOptions li:hover {
-    background-color: #f0f0f0;
-  }
-
-  .checkBox{
+.checkBox{
     display: flex;
     align-items: center;
     gap: 5px;
@@ -147,3 +186,90 @@ p{
     width: 24px;
     height: 24px;
   }
+
+@media only screen and (max-width: 780px) {
+    .pageContainer {
+        padding: 10px 40px;
+    }
+
+    .filterResized{
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 5px;
+        width: 50%;
+        border: 1px solid #8a8a8a;
+        border-radius: 3px;
+        padding: 4px 10px ;
+        color: #8a8a8a;
+        font-size: 15px;
+    }
+    
+    .filterResized > img{
+        width: 18px;
+    }
+    
+    .containerResized{
+        display: flex;
+        justify-content: space-between;
+        gap: 10px;
+    }
+    
+    .sortResized{
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        width: 50%;
+        border: 1px solid #8a8a8a;
+        border-radius: 3px;
+        padding: 4px;
+    }
+    select{
+        width: 115px;
+        padding: 0px 7px;
+        font-weight: bold;
+        font-size: 16px;
+        text-align: center;
+    }
+
+    .sortResized > span{
+        font-size: 14px;
+        color: #8a8a8a;
+    }
+
+    .productBox{
+        width: 190px;
+        height: 270px;
+    }
+
+    .productImg{
+        width: 110px;
+        height: 130px;
+    }
+}
+
+@media only screen and (max-width: 600px) {
+    .pageContainer {
+        padding: 10px 15px;
+    }
+
+    .productImg{
+        width: 100px;
+        height: 120px;
+    }
+
+    .brand{
+        font-size: 16px;
+        padding-top: 20px;
+    }
+
+    .productBox{
+        width: 150px;
+        height: 250px;
+    }
+
+    .nameContainer > span{
+        font-size: 14px;
+    }
+}
+

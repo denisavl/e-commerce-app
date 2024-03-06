@@ -1,184 +1,27 @@
 /* eslint-disable react/prop-types */
-import styles from "../CreatePage/createPage.module.css";
-import Header from "../../components/Header/Header";
-import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
-import filterImg from "../../assets/filter.png";
-import FilterResized from "../../components/FilterResized/FilterResized";
+import styles from '../FilterResized/filter.module.css'
+import { Checkbox } from '../../Pages/CreatePage/CreatePage';
 
-export default function CreatePage({
-  title,
-  products,
-  brands,
-  classifications,
-  colors,
-  prices,
-  properties,
-  handleFilter,
-  category,
-  sortedProducts,
-  setSortedProducts,
-  setDefaultOrder,
-  cartProd,
-  showCart,
-  toggleActive,
-  handleDelete,
-  setCartProd,
-  setResults,
-  setIsLoading,
-  searchItem,
-  setSearchItem,
-}) {
-  const [activeFilter, setActiveFilter] = useState(null);
-  const [checkedBrand, setCheckedBrand] = useState([]);
-  const [checkedClassification, setCheckedClassification] = useState([]);
-  const [checkedColor, setCheckedColor] = useState([]);
-  const [checkedPrice, setCheckedPrice] = useState([]);
-  const [checkedProperty, setCheckedProperty] = useState([]);
-  const [filterResized, setFilterResized] = useState(false);
-  const [showFilterResized, setShowFilterResized] = useState(false);
-
-  function handleCheckChange(prevChecked, value, filter) {
-    const currentIndex = prevChecked.indexOf(value);
-    const newChecked = [...prevChecked];
-    if (currentIndex === -1) {
-      newChecked.push(value);
-    } else {
-      newChecked.splice(currentIndex, 1);
-    }
-
-    switch (filter) {
-      case "brand":
-        setCheckedBrand(newChecked);
-        break;
-      case "classification":
-        setCheckedClassification(newChecked);
-        break;
-      case "color":
-        setCheckedColor(newChecked);
-        break;
-      case "price":
-        setCheckedPrice(newChecked);
-        break;
-      case "property":
-        setCheckedProperty(newChecked);
-        break;
-    }
-    handleFilter(newChecked, filter);
-  }
-
-  const ApplySort = (selectedSort) => {
-    switch (selectedSort) {
-      case "popularity":
-        setSortedProducts(selectedSort);
-        setDefaultOrder(products);
-        break;
-      case "low":
-        products.sort((a, b) => a.price - b.price);
-        setSortedProducts(selectedSort);
-        break;
-      case "big":
-        products.sort((a, b) => b.price - a.price);
-        setSortedProducts(selectedSort);
-        break;
-      default:
-        setSortedProducts("popularity");
-        setDefaultOrder(products);
-        break;
-    }
-    return products;
-  };
-
-  function toggleActiveFilter(filter) {
-    setActiveFilter(activeFilter === filter ? null : filter);
-  }
-
-  function toggleFilterResized(){
-      setShowFilterResized(!showFilterResized)
-  }
-
-  useEffect(() => {
-    const handleDocumentClick = () => {
-      setActiveFilter(null);
-    };
-
-    window.addEventListener("click", handleDocumentClick);
-
-    return () => {
-      window.removeEventListener("click", handleDocumentClick);
-    };
-  }, []);
-
-  useEffect(() => {
-    const handleResize = () => {
-      setFilterResized(window.innerWidth < 768);
-    };
-
-    handleResize();
-    window.addEventListener("resize", handleResize);
-
-    return () => {
-      window.removeEventListener("resize", handleResize);
-    };
-  }, []);
-
-  return (
-    <div>
-      <Header
-        cartProd={cartProd}
-        showCart={showCart}
-        toggleActive={toggleActive}
-        handleDelete={handleDelete}
-        setCartProd={setCartProd}
-        setResults={setResults}
-        setIsLoading={setIsLoading}
-        searchItem={searchItem}
-        setSearchItem={setSearchItem}
-      />
-      <div className={styles.pageContainer}>
-        <h1 className={styles.titlePage}>
-          {title} {`(${products.length})`}
-        </h1>
-        {filterResized ? (
-          <div className={styles.containerResized}>
-            <div className={styles.filterResized} onClick={toggleFilterResized}>
-              <span>Filters</span>
-              <img src={filterImg} alt="filter icon" />
-            </div>
-            <div className={styles.sortResized}>
-              <span>Sort by:</span>
-              <select
-                name="sort"
-                id="sort"
-                value={sortedProducts}
-                onChange={(event) => ApplySort(event.target.value)}
-              >
-                <option value="popularity">Popularity</option>
-                <option value="low">Price ↑</option>
-                <option value="big">Price ↓</option>
-              </select>
-            </div>
-            {showFilterResized &&             
-            <FilterResized 
-            toggleActiveFilter={toggleActiveFilter}
-            activeFilter={activeFilter}
-            brands={brands} 
-            checkedBrand={checkedBrand}
-            handleCheckChange={handleCheckChange}
-            classifications={classifications}
-            checkedClassification={checkedClassification}
-            colors={colors}
-            checkedColor={checkedColor}
-            prices={prices}
-            checkedPrice={checkedPrice}
-            properties={properties}
-            checkedProperty={checkedProperty}
-            toggleFilterResized={toggleFilterResized}
-            />}
-          </div>
-        ) : (
-          <div>
-             <div className={styles.filtersContainer}>
+export default function FilterResized({
+    toggleActiveFilter, 
+    activeFilter, 
+    brands, 
+    checkedBrand,
+    handleCheckChange,
+    classifications,
+    checkedClassification,
+    colors,
+    checkedColor,
+    prices,
+    checkedPrice,
+    properties,
+    checkedProperty,
+    toggleFilterResized
+}){
+    return (
+        <div className={styles.moduleContainer}>
+            <div className={styles.filtersContainer}>
+                <div className={styles.filtersTitle}>Filters</div>
               <div
                 className={styles.filterBox}
                 onClick={(event) => {
@@ -391,61 +234,9 @@ export default function CreatePage({
                   </ul>
                 )}
               </div>
+              <button onClick={toggleFilterResized} className={styles.closeFilters}>CLOSE THE FILTERS</button>
+        </div>  
         </div>
-            <div className={styles.sortContainer}>
-              <span>Sort by:</span>
-              <select
-                name="sort"
-                id="sort"
-                value={sortedProducts}
-                onChange={(event) => ApplySort(event.target.value)}
-              >
-                <option value="popularity">Popularity</option>
-                <option value="low">Price low to high</option>
-                <option value="big">Price high to low</option>
-              </select>
-            </div>
-          </div>
-        )}
-
-        <div className={styles.productsContainer}>
-          {products.map((product, index) => (
-            <Link to={`/${category}/${product.id}`} key={product.id}>
-              <div key={index} className={styles.productBox}>
-                <img
-                  className={styles.productImg}
-                  src={product.api_featured_image}
-                  alt={product.name}
-                />
-                <div className={styles.brand}>{product.brand}</div>
-                <div className={styles.nameContainer}>
-                  <span>{product.name}</span>
-                  <span className={styles.productType}>
-                    {product.product_type}
-                  </span>
-                </div>
-                <p>
-                  $
-                  {product.price && product.price > 0
-                    ? `${product.price}`
-                    : `${(product.price = "15.0")}`}
-                </p>
-              </div>
-            </Link>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
+        
+    )
 }
-
-const Checkbox = ({ label, checked, onChange }) => {
-  return (
-    <label className={styles.checkBox}>
-      <input type="checkbox" checked={checked} onChange={onChange} />
-      {label}
-    </label>
-  );
-};
-
-export {Checkbox}
