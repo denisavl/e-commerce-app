@@ -249,6 +249,7 @@
         display: block;
         margin: 0 auto;
         width: 300px;
+        padding-top: 45px;
     }
 
     .productImage{
