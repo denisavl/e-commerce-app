@@ -69,6 +69,7 @@ select {
     padding: 7px 10px;
     width: 150px;
     font-size: 15px;
+    background: transparent;
 }
 
 select:focus {

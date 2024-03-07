@@ -45,3 +45,55 @@
     padding-top: 10px;
     line-height: 1.5;
 }
+
+@media only screen and (max-width: 1024px) {
+    .content{
+        width: 90%;
+    }
+
+    .aboutTitle{
+        font-size: 28px;
+        padding-bottom: 30px;
+        padding-top: 30px;
+    }
+
+    .slogan{
+        font-size: 26px;
+    }
+}
+
+@media only screen and (max-width: 760px) {
+    .content{
+        width: 100%;
+    }
+
+    .aboutTitle{
+        font-size: 24px;
+        padding-bottom: 20px;
+        padding-top: 10px;
+    }
+
+    .poster{
+        height: 370px;
+        width: 100%;
+    }
+
+    .slogan{
+        font-size: 22px;
+        padding: 0px 20px 30px 20px;
+    }
+
+    .shopCart{
+        display: block;
+        padding: 10px;
+        margin: 0 auto;
+    }
+
+    .shopImg{
+        padding: 10px 0;
+    }
+
+    .shopTitle{
+        padding: 20px 0px;
+    }
+}

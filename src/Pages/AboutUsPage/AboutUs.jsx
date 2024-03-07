@@ -45,13 +45,13 @@ export default function AboutUs({
               the power of transformation of makeup, we set out to create a space
               where individuals could unleash their creativity and embrace their
               unique beauty. 
-              <br /> What sets Glam apart is our unwavering commitment
+              <br /> <br /> What sets Glam apart is our unwavering commitment
               to exclusivity and diversity. We celebrate beauty in all its forms
               and strive to offer a wide range of products that cater to every
               skin tone, gender identity, and style preference. From bold and
               adventurous looks to natural and understated elegance, there's
               something for everyone at Glam. 
-              <br /> But Glam is more than just a
+              <br /> <br /> But Glam is more than just a
               beauty retailer; it's a supportive community where makeup lovers
               can come together to share their experiences, learn from each
               other, and celebrate their passion for all things beauty. Whether

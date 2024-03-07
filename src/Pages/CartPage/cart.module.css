@@ -168,6 +168,35 @@
     .emptyCartImg{
         width: 450px;
     }
+
+    .filledCartTitle{
+        font-size: 26px;
+    }
+
+    .cartTableHeader{
+        font-size: 17px;
+    }
+
+    .productImg{
+        width: 80px;
+        height: 90px;
+    }
+
+    .imgProductCont{
+        padding-right: 1rem;
+    }
+
+    .productName{
+        font-size: 14px;
+    }
+    .shade, .productCode{
+        font-size: 13px;
+    }
+
+    .delete > button{
+        padding: 4px 8px;
+        font-size: 15px;
+    }
 }
 
 @media only screen and (max-width: 760px) {
