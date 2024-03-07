@@ -8,7 +8,11 @@ import { Link } from "react-router-dom";
 
 export default function Cart({cartProd, handleDelete, showCart, toggleActive, setCartProd, setResults, setIsLoading, searchItem, 
   setSearchItem}) {
-  const totalPrice = cartProd.reduce((total, item) => total + (item.quantity*item.price), 0);
+    const totalPrice = cartProd.reduce((total, item) => {
+      const price = typeof item.price === 'number' ? item.price.toFixed(1) : 15.0; 
+      return total + (item.quantity * parseFloat(price)); 
+    }, 0);
+    
   const priceWithoutVAT = totalPrice / 1.19;
 
   function incrementCount(productId, shade) {
