@@ -71,6 +71,7 @@
 
 .productName{
     font-weight: bolder;
+    margin: 5px 0;
 }
 
 .shade,
@@ -160,6 +161,11 @@
     letter-spacing: 1px;
 }
 
+.unitResized,
+    .subtotalResized{
+        display: none;
+    }
+
 @media only screen and (max-width: 1024px) {
     .emptyCartTitle{
         font-size: 26px;
@@ -188,6 +194,7 @@
 
     .productName{
         font-size: 14px;
+       
     }
     .shade, .productCode{
         font-size: 13px;
@@ -196,6 +203,10 @@
     .delete > button{
         padding: 4px 8px;
         font-size: 15px;
+    }
+
+    .filledCartContainer{
+        padding: 20px 30px;
     }
 }
 
@@ -208,5 +219,123 @@
         width: 380px;
     }
 
-    
+    .filledCartContainer{
+        padding: 10px;
+    }
+
+    .filledCartTitle{
+        font-size: 22px;
+    }
+
+    .cartTableHeader{
+        font-size: 14px;
+        grid-template-columns: 2fr 1fr;
+        position: relative;
+    }
+
+    .cartItem{
+        grid-template-columns: 2fr 0.8fr 0.3fr;
+        position: relative;
+    }
+
+    .cartItemPrice{
+        position: absolute;
+        right: 103px;
+        top: 60px;
+        font-size: 14px;
+    }
+
+    .cartItemSubtotal{
+        position: absolute;
+        right: 110px;
+        top: 80px;
+        font-size: 14px;
+    }
+
+    .cartHeaderUnitPrice,
+    .cartHeaderSubtotal{
+        display: none;
+    }
+
+    .unitResized,
+    .subtotalResized{
+        display: inline-block;
+        font-weight: bold;
+    }
+
 }
+
+@media only screen and (max-width: 470px) {
+
+    .filledCartTitle{
+        font-size: 20px;
+    }
+
+    .cartItemPrice{
+        right: 50px;
+        top: 50px;
+        font-size: 12px;
+    }
+
+    .cartItemSubtotal{
+        right: 55px;
+        top: 70px;
+        font-size: 12px;
+    }
+
+    .productImg{
+        width: 65px;
+        height: 70px;
+    }
+
+    .cartTableHeader{
+        grid-template-columns: 1.8fr 1fr;
+    }
+
+    .cartItem{
+        grid-template-columns: 1.8fr 0.9fr 0.3fr;
+    }
+
+    .cartInfo{
+        width: 190px;
+    }
+
+    .productName{
+        font-size: 13px;
+        margin: 0;
+    }
+
+    .shade,
+    .productCode{
+        font-size: 12px;
+    }
+
+    .delete > button{
+        padding: 3px 7px;
+        font-size: 13px;
+    }
+
+    .summaryTitle, .amount{
+        font-size: 14px;
+    }
+
+    .total, .deliveryCost{
+        font-size: 13px;
+    }
+    .noVAT, .vat{
+        font-size: 13px;
+    }
+
+    .promoCode{
+        padding: 8px 17% 8px 13px;
+    }
+
+    .completeOrder > button{
+        padding: 12px 14%;
+        font-size: 10px;
+    }
+
+    .imgProductCont{
+        padding-right: 0.5em;
+    }
+}   

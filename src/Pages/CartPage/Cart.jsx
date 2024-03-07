@@ -95,10 +95,13 @@ export default function Cart({cartProd, handleDelete, showCart, toggleActive, se
                     <button type="button" className={styles.plusQuantity} onClick={() => incrementCount(product.id, product.color_prod)}>+</button>
                 </div>
                 <div className={styles.cartItemPrice}>
-                  <span>${product.price > 0 && product.price ? (product.quantity * product.price).toFixed(1) : (product.quantity * '15.0').toFixed(1)}</span>
+                  <span><span className={styles.unitResized}>Unit Price: </span> ${product.price > 0 && product.price ? (product.price) : '15.0'}</span>
                 </div>
                 <div className={styles.cartItemSubtotal}>
-                  <span>  ${((product.quantity * product.price) % 1 === 0) ? (product.quantity * product.price).toFixed(1) : (product.quantity * product.price)}</span>
+                  <span> <span className={styles.subtotalResized}>Subtotal: </span>   $
+                        {product.price > 0 && product.price
+                          ? (product.quantity * product.price).toFixed(1)
+                          : (product.quantity * "15.0").toFixed(1)}</span>
                 </div>
                 <div className={styles.delete}>
                   <button type="button" onClick={() => handleDelete(product.id, product.color_prod)}>X</button>
