@@ -4,7 +4,7 @@ Glam is a sleek and modern shopping cart application built using React and modul
 
 Live: https://glam-app.vercel.app/
 
-#Live preview
+# Live preview
 
 ![image](https://github.com/denisavl/e-commerce-app/assets/120142660/139f624b-78d4-44ea-9292-9770f9ad183b)
 
