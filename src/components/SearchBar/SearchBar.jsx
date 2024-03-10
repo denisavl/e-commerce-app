@@ -41,7 +41,6 @@ export default function SearchBar({ setResults, setIsLoading, searchItem, setSea
     };
 
     if (searchItem) {
-      // setShowPreview(true);
       const debounceTimeout = setTimeout(() => {
         fetchSearch(searchItem);
       }, 300);
@@ -53,6 +52,16 @@ export default function SearchBar({ setResults, setIsLoading, searchItem, setSea
 
     return undefined;
   }, [searchItem, setResults]);
+
+  useEffect(() => {
+    const handleLocationChange = () => {
+      setSearchItem("");
+    };
+
+    return () => {
+      handleLocationChange();
+    };
+  }, [setSearchItem]);
 
   const handleInputChange = (value) => {
     setSearchItem(value);
