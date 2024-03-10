@@ -8,6 +8,7 @@ import MenuResized from "../MenuResized/MenuResized";
 import SearchBar from "../SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
+import { AnimatePresence, motion } from "framer-motion";
 
 const Header = ({
   cartProd,
@@ -52,7 +53,9 @@ const Header = ({
             <div className={styles.menuButton} onClick={toggleMenu}>
               <img src={menuImg} alt="menu" />
             </div>
-            {openMenu && <MenuResized toggleMenu={toggleMenu}/>}
+            <AnimatePresence>
+             {openMenu && <MenuResized toggleMenu={toggleMenu}/>}
+            </AnimatePresence>
             <div>
               <Link to="/">
                 <img className={styles.logo} src={logoImg} alt="logo image" />

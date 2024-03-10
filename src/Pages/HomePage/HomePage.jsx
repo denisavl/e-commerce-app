@@ -82,6 +82,7 @@ export default function HomePage({
       pageNumber = totalPages - 1;
     }
     setCurrentPage(pageNumber);
+    
   };
 
   const handleNextPage = () => {
@@ -90,6 +91,7 @@ export default function HomePage({
 
   const handlePreviousPage = () => {
     navigateToPage(currentPage - 1);
+    
   };
 
   return (
