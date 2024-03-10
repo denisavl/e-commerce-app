@@ -8,7 +8,7 @@ import MenuResized from "../MenuResized/MenuResized";
 import SearchBar from "../SearchBar/SearchBar";
 import { Link } from "react-router-dom";
 import { useState, useEffect } from "react";
-import { AnimatePresence, motion } from "framer-motion";
+import { AnimatePresence} from "framer-motion";
 
 const Header = ({
   cartProd,
@@ -137,6 +137,7 @@ const Header = ({
       </div>
       </div> 
       )}
+      <AnimatePresence>
       {showCart && (
         <CartPreview
           product={cartProd}
@@ -146,6 +147,8 @@ const Header = ({
           setCartProd={setCartProd}
         />
       )}
+      </AnimatePresence>
+     
     </div>
   );
 };

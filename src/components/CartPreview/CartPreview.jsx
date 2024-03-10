@@ -3,6 +3,7 @@ import styles from "../CartPreview/cartPreview.module.css";
 import { Link } from "react-router-dom";
 import infoIcon from "../../assets/infoIcon.svg";
 import closeBtn from "../../assets/closeBtn.png";
+import { motion } from "framer-motion";
 
 export default function CartPreview({
   product,
@@ -38,7 +39,11 @@ export default function CartPreview({
   return (
     showCart && (
       <div className={styles.moduleContainer} onClick={toggleActive}>
-        <div
+        <motion.div
+          initial={{ x: "100%" }} 
+          animate={{ x: 0 }} 
+          exit={{ x: "100%" }}
+          transition={{ duration: 0.4 }}
           className={styles.cartPreviewContainer}
           onClick={(e) => e.stopPropagation()}
         >
@@ -127,7 +132,7 @@ export default function CartPreview({
               VIEW SHOPPING CART
             </button>
           </Link>
-        </div>
+        </motion.div>
       </div>
     )
   );
