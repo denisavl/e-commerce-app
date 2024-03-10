@@ -249,7 +249,7 @@ p{
     }
 }
 
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 650px) {
     .pageContainer {
         padding: 10px 15px;
     }
@@ -271,6 +271,34 @@ p{
 
     .nameContainer > span{
         font-size: 14px;
+    }
+}
+
+@media only screen and (max-width: 400px) {
+    .pageContainer {
+        padding: 5px;
+    }
+
+    .productImg{
+        width: 70px;
+        height: 90px;
+    }
+
+    .productBox{
+        width: 120px;
+        height: 220px;
+    }
+
+    .brand{
+        font-size: 13px;
+        padding-top: 15px;
+    }
+
+    .nameContainer > span{
+        font-size: 12px;
+    }
+    .price{
+        font-size: 13px;
     }
 }
 

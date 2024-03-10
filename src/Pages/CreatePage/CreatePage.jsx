@@ -424,7 +424,7 @@ export default function CreatePage({
                     {product.product_type}
                   </span>
                 </div>
-                <p>
+                <p className={styles.price}>
                   $
                   {product.price && product.price > 0
                     ? `${product.price}`
