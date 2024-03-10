@@ -85,8 +85,9 @@ export default function Cart({
               <div className={styles.cartHeaderSubtotal}>Subtotal</div>
             </div>
             {cartProd.map((product, index) => (
-              <Link to={`/cart/${product.id}`} key={product.id}>
+             
               <div key={index} className={styles.cartItem}>
+                 <Link to={`/cart/${product.id}`} key={product.id}>
                 <div className={styles.cartInfo}>
                   <div className={styles.imgProductCont}>
                     <img
@@ -103,6 +104,7 @@ export default function Cart({
                     </p>
                   </div>
                 </div>
+                </Link>
                 <div className={styles.cartItemQuantity}>
                 <button type="button" className={styles.minusQuantity} onClick={() => decrementCount(product.id, product.color_prod)}>-</button>
                     <div className={styles.countQuantity}>{product.quantity}</div>
@@ -121,7 +123,6 @@ export default function Cart({
                   <button type="button" onClick={() => handleDelete(product.id, product.color_prod)}>X</button>
                 </div>
               </div>
-              </Link>
             ))}
           </div>
           <div className={styles.summary}>
