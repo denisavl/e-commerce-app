@@ -6,7 +6,15 @@ import { Link } from "react-router-dom";
 // import { fetchCarousel } from "../../fetch";
 // import { useQuery } from "@tanstack/react-query";
 
-export default function Cart({cartProd, handleDelete, showCart, toggleActive, setCartProd, setResults, setIsLoading, searchItem, 
+export default function Cart({
+  cartProd, 
+  handleDelete, 
+  showCart, 
+  toggleActive, 
+  setCartProd, 
+  setResults, 
+  setIsLoading, 
+  searchItem, 
   setSearchItem}) {
     const totalPrice = cartProd.reduce((total, item) => {
       const price = typeof item.price === 'number' ? item.price.toFixed(1) : 15.0; 
@@ -66,6 +74,7 @@ export default function Cart({cartProd, handleDelete, showCart, toggleActive, se
       )}
 
       {cartProd.length > 0 && (
+
         <div className={styles.filledCartContainer}>
           <h1 className={styles.filledCartTitle}>Shopping cart</h1>
           <div className={styles.cartContent}>
@@ -76,6 +85,7 @@ export default function Cart({cartProd, handleDelete, showCart, toggleActive, se
               <div className={styles.cartHeaderSubtotal}>Subtotal</div>
             </div>
             {cartProd.map((product, index) => (
+              <Link to={`/cart/${product.id}`} key={product.id}>
               <div key={index} className={styles.cartItem}>
                 <div className={styles.cartInfo}>
                   <div className={styles.imgProductCont}>
@@ -111,6 +121,7 @@ export default function Cart({cartProd, handleDelete, showCart, toggleActive, se
                   <button type="button" onClick={() => handleDelete(product.id, product.color_prod)}>X</button>
                 </div>
               </div>
+              </Link>
             ))}
           </div>
           <div className={styles.summary}>

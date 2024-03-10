@@ -420,6 +420,37 @@ export default function App() {
             />
           }
         />
+        {cartProd?.map((product) =>
+          (
+            <Route
+              key={product.id}
+              path={`/cart/${product.id}`}
+              element={
+                <ProductPage
+                  productId={product.id}
+                  category={"cart"}
+                  incrementCount={incrementCount}
+                  decrementCount={decrementCount}
+                  count={count}
+                  cartProd={cartProd}
+                  addToCart={() => addToCart(product, count)}
+                  showCart={showCart}
+                  toggleActive={toggleActive}
+                  handleDelete={handleDelete}
+                  handleShade={handleShade}
+                  shade={shade}
+                  setCount={setCount}
+                  setCartProd={setCartProd}
+                  setShade={setShade}
+                  setResults={setResults}
+                  setIsLoading={setIsLoading}
+                  searchItem={searchItem}
+              setSearchItem={setSearchItem}
+                />
+              }
+            />
+          ))
+        }
         <Route
           path="/about"
           element={
